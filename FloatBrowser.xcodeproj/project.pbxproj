@@ -75,10 +75,10 @@
 		266042C32F282C5A006FB55A /* moreai.png in Resources */ = {isa = PBXBuildFile; fileRef = 266042752F282C5A006FB55A /* moreai.png */; };
 		266042C42F282C5A006FB55A /* Changeshortcuts.png in Resources */ = {isa = PBXBuildFile; fileRef = 266042702F282C5A006FB55A /* Changeshortcuts.png */; };
 		266042C52F282C5A006FB55A /* gatekeeperwarning.png in Resources */ = {isa = PBXBuildFile; fileRef = 266042722F282C5A006FB55A /* gatekeeperwarning.png */; };
-		266042C62F282C5A006FB55A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2660426C2F282C5A006FB55A /* Assets.xcassets */; };
 		266042C72F282C5A006FB55A /* CustomApiChat.png in Resources */ = {isa = PBXBuildFile; fileRef = 266042712F282C5A006FB55A /* CustomApiChat.png */; };
 		266042C82F282C5A006FB55A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2660426E2F282C5A006FB55A /* README.md */; };
 		266042CA2F282C5A006FB55A /* privacyissues.png in Resources */ = {isa = PBXBuildFile; fileRef = 266042782F282C5A006FB55A /* privacyissues.png */; };
+		26DF21782F294ED30082A112 /* AIService+Pro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF21772F294ED30082A112 /* AIService+Pro.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -141,7 +141,6 @@
 		266042682F282C5A006FB55A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		266042692F282C5A006FB55A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		2660426A2F282C5A006FB55A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2660426C2F282C5A006FB55A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2660426D2F282C5A006FB55A /* installation_guide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = installation_guide.pdf; sourceTree = "<group>"; };
 		2660426E2F282C5A006FB55A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2660426F2F282C5A006FB55A /* AppleAi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppleAi.png; sourceTree = "<group>"; };
@@ -156,6 +155,7 @@
 		266042782F282C5A006FB55A /* privacyissues.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = privacyissues.png; sourceTree = "<group>"; };
 		266042792F282C5A006FB55A /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
 		2660427A2F282C5A006FB55A /* upi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upi.png; sourceTree = "<group>"; };
+		26DF21772F294ED30082A112 /* AIService+Pro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIService+Pro.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				2660426B2F282C5A006FB55A /* AppleAI */,
-				2660426C2F282C5A006FB55A /* Assets.xcassets */,
 				2660426D2F282C5A006FB55A /* installation_guide.pdf */,
 				2660426E2F282C5A006FB55A /* README.md */,
 				2660427B2F282C5A006FB55A /* requirements */,
@@ -259,6 +258,7 @@
 				266042622F282C5A006FB55A /* ShortcutRecorder.swift */,
 				266042632F282C5A006FB55A /* WebViewWindow.swift */,
 				266042642F282C5A006FB55A /* WebViewWithWatermark.swift */,
+				26DF21772F294ED30082A112 /* AIService+Pro.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -372,7 +372,6 @@
 				266042C32F282C5A006FB55A /* moreai.png in Resources */,
 				266042C42F282C5A006FB55A /* Changeshortcuts.png in Resources */,
 				266042C52F282C5A006FB55A /* gatekeeperwarning.png in Resources */,
-				266042C62F282C5A006FB55A /* Assets.xcassets in Resources */,
 				266042C72F282C5A006FB55A /* CustomApiChat.png in Resources */,
 				266042C82F282C5A006FB55A /* README.md in Resources */,
 				266042CA2F282C5A006FB55A /* privacyissues.png in Resources */,
@@ -423,6 +422,7 @@
 				266042A32F282C5A006FB55A /* KeyboardShortcutManager.swift in Sources */,
 				266042A42F282C5A006FB55A /* WebViewWithWatermark.swift in Sources */,
 				266042A52F282C5A006FB55A /* ProMaintenanceView.swift in Sources */,
+				26DF21782F294ED30082A112 /* AIService+Pro.swift in Sources */,
 				266042A62F282C5A006FB55A /* AIToolsApp.swift in Sources */,
 				266042A72F282C5A006FB55A /* ShortcutRecorder.swift in Sources */,
 				266042A92F282C5A006FB55A /* ProUpgradePrompt.swift in Sources */,
@@ -572,6 +572,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B4G29ZH5V7;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
@@ -584,7 +585,7 @@
 				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
 				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
 				ENABLE_RESOURCE_ACCESS_USB = NO;
-				ENABLE_USER_SELECTED_FILES = readonly;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = FloatBrowser;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -613,6 +614,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B4G29ZH5V7;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
@@ -625,7 +627,7 @@
 				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
 				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
 				ENABLE_RESOURCE_ACCESS_USB = NO;
-				ENABLE_USER_SELECTED_FILES = readonly;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = FloatBrowser;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

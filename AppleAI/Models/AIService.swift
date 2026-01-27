@@ -1,25 +1,36 @@
 import Foundation
+import SwiftUI
 
-struct AIService: Identifiable, Hashable, Codable {
-    var id: String
-    var name: String
-    var url: URL
-    var iconName: String // SF Symbol ismi veya Asset ismi
-    var isEnabled: Bool = true
+enum AIService: String, CaseIterable, Identifiable {
+    case chatgpt
+    case gemini
+    case youtubeMusic
     
-    // Equatable ve Hashable uyumluluğu
-    static func == (lhs: AIService, rhs: AIService) -> Bool {
-        return lhs.id == rhs.id
+    var id: String { self.rawValue }
+    
+    var name: String {
+        switch self {
+        case .chatgpt: return "ChatGPT"
+        case .gemini: return "Gemini"
+        case .youtubeMusic: return "YouTube Music"
+        }
     }
     
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+    var url: URL {
+        switch self {
+        case .chatgpt: return URL(string: "https://chatgpt.com")!
+        case .gemini: return URL(string: "https://gemini.google.com")!
+        case .youtubeMusic: return URL(string: "https://music.youtube.com")!
+        }
+    }
+    
+    var iconName: String {
+        // Assets.xcassets içinde bu isimlerde (chatgpt, gemini) resimler olmalı.
+        // YouTube Music için sistem ikonu kullanacağız, kod tarafında ayarladık.
+        switch self {
+        case .chatgpt: return "chatgpt"
+        case .gemini: return "gemini" // Eğer asset ismi 'google' ise burayı 'google' yap
+        case .youtubeMusic: return "music.note"
+        }
     }
 }
-
-// Global servis listesi
-let aiServices: [AIService] = [
-    AIService(id: "gemini", name: "Gemini", url: URL(string: "https://gemini.google.com")!, iconName: "sparkles"),
-    AIService(id: "chatgpt", name: "ChatGPT", url: URL(string: "https://chat.openai.com")!, iconName: "message"),
-    AIService(id: "youtubemusic", name: "YouTube Music", url: URL(string: "https://music.youtube.com")!, iconName: "play.circle")
-]

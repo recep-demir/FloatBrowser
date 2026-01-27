@@ -1,4 +1,5 @@
 import Foundation
+import Combine
 
 class ConversationLimiter: ObservableObject {
     static let shared = ConversationLimiter()
@@ -50,3 +51,4 @@ class ConversationLimiter: ObservableObject {
         UserDefaults.standard.set(conversationCount, forKey: conversationCountKey)
     }
 }
+

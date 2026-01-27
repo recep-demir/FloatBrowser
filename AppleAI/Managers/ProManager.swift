@@ -12,6 +12,14 @@ class ProManager: ObservableObject {
     @Published var showUpgradeSheet: Bool = false
     @Published var trialDaysRemaining: Int = 99
     
+    // Controls whether the app should show a Pro upgrade prompt
+    @Published var shouldShowUpgradePrompt: Bool = true
+
+    // Call when the prompt has been shown so we don't show it repeatedly
+    func markUpgradePromptShown() {
+        shouldShowUpgradePrompt = false
+    }
+    
     private init() {}
     
     func checkProStatus() {
@@ -23,3 +31,4 @@ class ProManager: ObservableObject {
         self.isProUser = true
     }
 }
+

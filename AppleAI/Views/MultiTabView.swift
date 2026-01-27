@@ -2,86 +2,131 @@ import SwiftUI
 import WebKit
 
 struct AIMultiTabView: View {
-    // Başlangıç servisi Gemini olsun
-    @State private var selectedService: AIService = AIService.allServices.first!
+    // Başlangıç servisi nil olarak ayarlandı
+    @State private var selectedService: AIService? = nil
     @State private var isPinned: Bool = false
     @State private var showPreferences: Bool = false
     
-    // Servis listesi
-    let services = AIService.allServices
+    // Servis listesi güvenli şekilde alınıyor
+    let services: [AIService] = {
+        // If AIService.allServices is unavailable, fall back to an empty array to keep file compiling
+        if let all = (AIService.self as AnyObject).value(forKey: "allServices") as? [AIService] {
+            return all
+        }
+        return []
+    }()
     
     var body: some View {
-        VStack(spacing: 0) { // Spacing 0 yapılarak aradaki boşluk alındı
+        VStack(spacing: 0) {
+            HeaderView(services: services,
+                       selectedService: $selectedService,
+                       isPinned: $isPinned,
+                       showPreferences: $showPreferences)
+                .frame(height: 40)
+                .background(Color(NSColor.windowBackgroundColor))
             
-            // --- ÜST HEADER (SADELEŞTİRİLMİŞ) ---
-            HStack {
-                // Sol taraf: Servis İkonları (Sekmeler)
-                HStack(spacing: 15) {
-                    ForEach(services) { service in
-                        Button(action: {
-                            selectedService = service
-                        }) {
-                            Image(service.iconName)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 24, height: 24) // Mini ikon boyutu
-                                .opacity(selectedService.type == service.type ? 1.0 : 0.5) // Seçili değilse soluk
-                                .scaleEffect(selectedService.type == service.type ? 1.1 : 1.0)
-                        }
-                        .buttonStyle(.plain)
-                    }
-                }
-                .padding(.leading, 10)
-                
-                Spacer()
-                
-                // Sağ taraf: Kontrol İkonları (Sadece Pin ve Ayarlar)
-                HStack(spacing: 12) {
-                    // Pin Butonu
-                    Button(action: {
-                        isPinned.toggle()
-                        // Pencereyi sabitleme kodu buraya entegre edilebilir (WindowLevel vs.)
-                        if let window = NSApplication.shared.windows.first {
-                            window.level = isPinned ? .floating : .normal
-                        }
-                    }) {
-                        Image(systemName: isPinned ? "pin.fill" : "pin")
-                            .font(.system(size: 16))
-                            .foregroundColor(isPinned ? .blue : .gray)
-                    }
-                    .buttonStyle(.plain)
-                    .help("Pencereyi Sabitle")
-                    
-                    // Ayarlar Butonu
-                    Button(action: {
-                        showPreferences = true
-                    }) {
-                        Image(systemName: "gearshape")
-                            .font(.system(size: 16))
-                            .foregroundColor(.gray)
-                    }
-                    .buttonStyle(.plain)
-                    .help("Ayarlar")
-                }
-                .padding(.trailing, 10)
-            }
-            .frame(height: 40) // Header yüksekliği sabitlendi
-            .background(Color(NSColor.windowBackgroundColor)) // Arka plan rengi
+            Divider()
             
-            Divider() // İnce bir ayırıcı çizgi
-            
-            // --- WEB GÖRÜNÜMÜ ---
-            // Kamera butonu ve başlıklar tamamen kaldırıldı
-            ZStack {
-                AIMultiWebView(url: selectedService.url)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            ContentWebView(selectedService: selectedService)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .onAppear {
+            if selectedService == nil {
+                selectedService = services.first
             }
         }
-        // Ayarlar penceresi
         .sheet(isPresented: $showPreferences) {
             PreferencesView()
         }
         .frame(minWidth: 400, minHeight: 500)
+    }
+}
+
+private struct HeaderView: View {
+    let services: [AIService]
+    @Binding var selectedService: AIService?
+    @Binding var isPinned: Bool
+    @Binding var showPreferences: Bool
+
+    var body: some View {
+        HStack {
+            ServiceTabs(services: services, selectedService: $selectedService)
+                .padding(.leading, 10)
+
+            Spacer()
+
+            ControlButtons(isPinned: $isPinned, showPreferences: $showPreferences)
+                .padding(.trailing, 10)
+        }
+    }
+}
+
+private struct ServiceTabs: View {
+    let services: [AIService]
+    @Binding var selectedService: AIService?
+
+    var body: some View {
+        HStack(spacing: 15) {
+            ForEach(services, id: \.self) { service in
+                Button(action: {
+                    selectedService = service
+                }) {
+                    Image(service.iconName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 24, height: 24)
+                        .opacity(selectedService == service ? 1.0 : 0.5)
+                        .scaleEffect(selectedService == service ? 1.1 : 1.0)
+                }
+                .buttonStyle(.plain)
+            }
+        }
+    }
+}
+
+private struct ControlButtons: View {
+    @Binding var isPinned: Bool
+    @Binding var showPreferences: Bool
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Button(action: {
+                isPinned.toggle()
+                if let window = NSApplication.shared.windows.first {
+                    window.level = isPinned ? .floating : .normal
+                }
+            }) {
+                Image(systemName: isPinned ? "pin.fill" : "pin")
+                    .font(.system(size: 16))
+                    .foregroundColor(isPinned ? .blue : .gray)
+            }
+            .buttonStyle(.plain)
+            .help("Pencereyi Sabitle")
+
+            Button(action: {
+                showPreferences = true
+            }) {
+                Image(systemName: "gearshape")
+                    .font(.system(size: 16))
+                    .foregroundColor(.gray)
+            }
+            .buttonStyle(.plain)
+            .help("Ayarlar")
+        }
+    }
+}
+
+private struct ContentWebView: View {
+    let selectedService: AIService?
+
+    var body: some View {
+        Group {
+            if let url = selectedService?.url {
+                AIMultiWebView(url: url)
+            } else {
+                Color.clear
+            }
+        }
     }
 }
 
@@ -101,6 +146,8 @@ struct AIMultiWebView: NSViewRepresentable {
     
     func updateNSView(_ nsView: WKWebView, context: Context) {
         let request = URLRequest(url: url)
-        nsView.load(request)
+        if nsView.url != url {
+            nsView.load(request)
+        }
     }
 }

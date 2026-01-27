@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct ProUpgradePrompt: View {
-    @ObservedObject var proManager = ProManager.shared
+    @ObservedObject private var proManagerWrapper = ProManager.shared
+    private var proManager: ProManager { proManagerWrapper }
     @State private var showPrompt = false
     
     var body: some View {
@@ -15,7 +16,7 @@ struct ProUpgradePrompt: View {
     }
     
     private func checkAndShowPrompt() {
-        if proManager.shouldShowUpgradePrompt() {
+        if proManager.shouldShowUpgradePrompt {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                 showPrompt = true
                 proManager.markUpgradePromptShown()
