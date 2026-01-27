@@ -18,6 +18,7 @@ class WebViewStore: NSObject, ObservableObject {
             return webView
         }
         
+        
         let config = WKWebViewConfiguration()
         config.allowsAirPlayForMediaPlayback = true
         config.mediaTypesRequiringUserActionForPlayback = []
