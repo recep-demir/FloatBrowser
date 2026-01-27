@@ -1,4 +1,5 @@
 import SwiftUI
+import WebKit
 
 struct WebViewWindow: View {
     let service: AIService
@@ -6,15 +7,14 @@ struct WebViewWindow: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            // Üst Başlık Barı
+            // Üst Başlık
             HStack {
                 HStack(spacing: 8) {
-                    // Düzeltme 1: 'icon' yerine 'iconName' kullanıldı
                     Image(systemName: service.iconName)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 18, height: 18)
-                        .foregroundColor(.primary) // Düzeltme 2: 'color' yerine sistem rengi
+                        .foregroundColor(.primary)
                     
                     Text(service.name)
                         .font(.headline)
@@ -22,18 +22,17 @@ struct WebViewWindow: View {
                 
                 Spacer()
                 
-                // Yükleniyor göstergesi
                 if isLoading {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle())
                         .scaleEffect(0.7)
                 }
                 
-                // Yenileme Butonu
+                // Yenileme Butonu (DÜZELTİLEN KISIM)
                 Button(action: {
-                    if let webView = WebViewCache.shared.webViews[service.id] {
-                        webView.reload()
-                    }
+                    // Artık hata vermeyecek güvenli yöntem:
+                    let webView = WebViewCache.shared.getWebView(for: service)
+                    webView.reload()
                 }) {
                     Image(systemName: "arrow.clockwise")
                         .font(.system(size: 14))
@@ -43,13 +42,14 @@ struct WebViewWindow: View {
             }
             .padding(.horizontal)
             .padding(.vertical, 10)
-            .background(Color(NSColor.windowBackgroundColor)) // Arkaplan rengi
+            .background(Color(NSColor.windowBackgroundColor))
             
             Divider()
             
-            // WebView Alanı
-            // Eğer PersistentWebView hata verirse burayı AIWebView(service: service) yapabilirsiniz.
-            PersistentWebView(service: service, isLoading: $isLoading)
+            // WebView
+            let initialURL = URL(string: "about:blank")!
+            AIWebView(url: initialURL, service: service)
         }
     }
 }
+
