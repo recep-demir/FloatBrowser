@@ -12,25 +12,31 @@ struct AIToolsApp: App {
     }
 }
 
-// App delegate to handle application lifecycle
 class AppDelegate: NSObject, NSApplicationDelegate {
     var menuBarManager: MenuBarManager!
     
     func applicationDidFinishLaunching(_ notification: Notification) {
-        // Menu bar uygulaması olarak ayarla
         NSApp.setActivationPolicy(.accessory)
-        
-        // ProManager'ı başlat (Herkes Pro)
         _ = ProManager.shared
-        
-        // MenuBar yöneticisini başlat
         menuBarManager = MenuBarManager.shared
-        
-        // Uygulama kapanmasını önle (Persistent Window gerekirse burada tutulur)
-        // FloatBrowser mantığında pencereyi MenuBarManager yönetiyor.
     }
     
-    func applicationWillTerminate(_ notification: Notification) {
-        // Kapanış işlemleri
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        // 1. Dock'ta görünmesini engelle
+        NSApp.setActivationPolicy(.accessory)
+        
+        // 2. Pencereyi veya Popover'ı Aç
+        let manager = MenuBarManager.shared
+        if manager.isPinned {
+            manager.pinnedWindow?.makeKeyAndOrderFront(nil)
+        } else {
+            manager.togglePopover(nil)
+        }
+        
+        // 3. YENİ ÖZELLİK: "Müziğe Geç" Sinyali Gönder!
+        // Bu sinyali arayüz (CompactChatView) yakalayacak.
+        NotificationCenter.default.post(name: NSNotification.Name("SwitchToYouTubeMusic"), object: nil)
+        
+        return true
     }
 }
