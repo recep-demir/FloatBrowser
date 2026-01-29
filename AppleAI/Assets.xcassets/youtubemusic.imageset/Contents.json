@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "claude.png",
+      "filename" : "AwesomeCopy_paste_C2026634-331E-4A7C-B3D6-713CBDEC71B8.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -17,9 +17,5 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true,
-    "template-rendering-intent" : "original"
   }
 }

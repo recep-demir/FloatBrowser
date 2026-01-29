@@ -1,25 +1,36 @@
 import SwiftUI
+import AppKit
 
 @main
 struct AIToolsApp: App {
-    // macOS uygulamalarında yaşam döngüsünü yönetmek için AppDelegate kullanıyoruz
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
-        // Ayarlar penceresi (Command + , ile açılır)
         Settings {
-            PreferencesView()
+            EmptyView()
         }
     }
 }
 
+// App delegate to handle application lifecycle
 class AppDelegate: NSObject, NSApplicationDelegate {
+    var menuBarManager: MenuBarManager!
+    
     func applicationDidFinishLaunching(_ notification: Notification) {
-        // Uygulama başladığında MenuBar ikonunu ve özelliklerini yükle
-        MenuBarManager.shared.setup()
+        // Menu bar uygulaması olarak ayarla
+        NSApp.setActivationPolicy(.accessory)
         
-        // Dock ikonunu gizle (Sadece menü çubuğunda çalışması için)
-        // Eğer hem dock hem menüde görünsün istersen bu satırı sil.
-        // NSApp.setActivationPolicy(.accessory)
+        // ProManager'ı başlat (Herkes Pro)
+        _ = ProManager.shared
+        
+        // MenuBar yöneticisini başlat
+        menuBarManager = MenuBarManager.shared
+        
+        // Uygulama kapanmasını önle (Persistent Window gerekirse burada tutulur)
+        // FloatBrowser mantığında pencereyi MenuBarManager yönetiyor.
+    }
+    
+    func applicationWillTerminate(_ notification: Notification) {
+        // Kapanış işlemleri
     }
 }

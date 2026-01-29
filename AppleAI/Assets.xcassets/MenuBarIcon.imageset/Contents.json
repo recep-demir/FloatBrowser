@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "AppleAi.png",
+      "filename" : "MenuBarIcon.png",
       "idiom" : "mac"
     }
   ],
@@ -9,4 +9,4 @@
     "author" : "xcode",
     "version" : 1
   }
-} 
+}
