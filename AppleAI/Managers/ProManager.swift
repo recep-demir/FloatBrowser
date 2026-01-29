@@ -1,34 +1,34 @@
 import Foundation
-import SwiftUI
 import Combine
 
 class ProManager: ObservableObject {
     static let shared = ProManager()
     
-    // Pro özellikleri her zaman açık
+    // Herkes Pro
     @Published var isProUser: Bool = true
     
-    // Diğer değişkenler hata vermemesi için formalite olarak tutuluyor
-    @Published var showUpgradeSheet: Bool = false
-    @Published var trialDaysRemaining: Int = 99
+    // --- Uyumluluk Değişkenleri (Hata Vermemesi İçin) ---
     
-    // Controls whether the app should show a Pro upgrade prompt
-    @Published var shouldShowUpgradePrompt: Bool = true
-
-    // Call when the prompt has been shown so we don't show it repeatedly
-    func markUpgradePromptShown() {
-        shouldShowUpgradePrompt = false
-    }
+    // ProSplashView hatasını önlemek için
+    @Published var trialDaysRemaining: Int = 365
+    @Published var isTrialMode: Bool = false
+    
+    // ProUpgradePrompt hatasını önlemek için
+    // Bu değer 'false' olduğu sürece yükseltme ekranı çıkmaz
+    @Published var shouldShowUpgradePrompt: Bool = false
     
     private init() {}
     
     func checkProStatus() {
-        // Kontrol yapmaya gerek yok, her zaman pro
         self.isProUser = true
     }
     
-    func unlockPro() {
+    func restorePurchase() {
         self.isProUser = true
     }
+    
+    // ProUpgradePrompt içinden çağrılan fonksiyon (Boş bırakıyoruz)
+    func markUpgradePromptShown() {
+        // Zaten göstermediğimiz için bir şey yapmaya gerek yok
+    }
 }
-
