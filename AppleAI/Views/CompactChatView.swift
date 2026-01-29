@@ -2,10 +2,11 @@ import SwiftUI
 import WebKit
 
 struct CompactChatView: View {
-    @State private var selectedService: AIService = .gemini
-    @StateObject private var webViewManager = WebViewManager.shared
     @ObservedObject var menuManager: MenuBarManager
     @ObservedObject var prefs = PreferencesManager.shared
+    
+    @State private var selectedService: AIService = .gemini
+    @StateObject private var webViewManager = WebViewManager.shared
     
     @AppStorage("lastSelectedService") private var storedServiceRawValue: String = AIService.gemini.rawValue
     
@@ -27,13 +28,11 @@ struct CompactChatView: View {
                 
                 Spacer()
                 
-                // 2. AYARLAR SORUNU: Kapatılan servisleri gizle
+                // Servis İkonları
                 HStack(spacing: 20) {
                     ForEach(AIService.allCases.filter { prefs.isServiceEnabled($0) }) { service in
                         Button(action: {
-                            selectedService = service
-                            storedServiceRawValue = service.rawValue
-                            webViewManager.load(url: service.url)
+                            switchService(to: service)
                         }) {
                             Group {
                                 if service.isSystemIcon {
@@ -78,33 +77,36 @@ struct CompactChatView: View {
             )
             
             // --- WebView ---
-            ZStack {
-                Color.black
-                AIWebView(url: selectedService.url)
-                    .id(selectedService.id)
-                    // .id() kullanımı bazen gereksiz yenileme yapar,
-                    // ama AIWebView içindeki kontrolümüz bunu engelleyecek.
-            }
+            // Konteyner yapısı (AIWebView zaten kendi içinde handle ediyor ama burası temiz kalsın)
+            AIWebView(url: selectedService.url)
         }
-        // 3. RESIZE SORUNU: Sabit .frame(width: 400...) KALDIRILDI.
-        // Onun yerine minWidth/minHeight kullanıyoruz ki kullanıcı büyütebilsin.
         .frame(minWidth: 350, minHeight: 500)
-        .background(Color(NSColor.windowBackgroundColor))
         .onAppear {
-            if let savedService = AIService(rawValue: storedServiceRawValue), prefs.isServiceEnabled(savedService) {
-                selectedService = savedService
-            } else {
-                // Eğer kayıtlı servis ayarlardan kapatıldıysa ilk açık olana geç
-                if let firstAvailable = AIService.allCases.first(where: { prefs.isServiceEnabled($0) }) {
-                    selectedService = firstAvailable
-                }
+            if let saved = AIService(rawValue: storedServiceRawValue), prefs.isServiceEnabled(saved) {
+                selectedService = saved
+            } else if let first = AIService.allCases.first(where: { prefs.isServiceEnabled($0) }) {
+                selectedService = first
             }
             webViewManager.load(url: selectedService.url)
+        }
+        // YENİ ÖZELLİK: Sinyali Dinle ve Müziğe Geç
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("SwitchToYouTubeMusic"))) { _ in
+            switchService(to: .youtubeMusic)
+        }
+    }
+    
+    // Yardımcı Fonksiyon: Servis Değiştirme
+    private func switchService(to service: AIService) {
+        // Eğer o servis ayarlardan kapalıysa zorla açamayız, kontrol et
+        if prefs.isServiceEnabled(service) {
+            selectedService = service
+            storedServiceRawValue = service.rawValue
+            webViewManager.load(url: service.url)
         }
     }
 }
 
-
+// Görsel Efekt (Değişmedi, aynı kalıyor)
 struct VisualEffectBlur: NSViewRepresentable {
     var material: NSVisualEffectView.Material
     var blendingMode: NSVisualEffectView.BlendingMode

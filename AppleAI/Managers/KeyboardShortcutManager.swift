@@ -1,24 +1,50 @@
 import Foundation
 import AppKit
 import SwiftUI
-import Combine
 
-@MainActor
-class KeyboardShortcutManager: ObservableObject {
-    let objectWillChange = ObservableObjectPublisher()
+final class KeyboardShortcutManager {
     static let shared = KeyboardShortcutManager()
     
     private init() {}
     
-    // Pencereyi açıp kapatan fonksiyon
-    func toggleWindow() {
-        // MenuBarManager üzerindeki popover'ı tetikle
-        MenuBarManager.shared.togglePopover(nil)
+    func setup() {
+        // 1. GLOBAL MONITOR (Uygulama arka plandayken çalışır)
+        NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { event in
+            self.handleEvent(event)
+        }
+        
+        // 2. LOCAL MONITOR (Uygulama aktifken/seçiliyken çalışır)
+        NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
+            if self.handleEvent(event) {
+                return nil // Tuş olayını yakaladık, sistem başkasına iletmesin
+            }
+            return event
+        }
     }
     
-    // Global kısayol dinleyicisi eklenebilir (Şimdilik basit tutuyoruz)
-    func setupKeyboardShortcuts() {
-        // İleride global hotkey eklemek istersen buraya kod gelecek.
-        // Şimdilik boş bırakıyoruz ki çökme veya yetki hatası olmasın.
+    @discardableResult
+    private func handleEvent(_ event: NSEvent) -> Bool {
+        // Hedef: Option (Alt) + Command + G
+        // KeyCode 5 = "G" harfi
+        // Modifiers = .command ve .option
+        
+        if event.modifierFlags.contains(.command) &&
+           event.modifierFlags.contains(.option) &&
+           event.keyCode == 5 {
+            
+            DispatchQueue.main.async {
+                let manager = MenuBarManager.shared
+                if manager.isPinned {
+                    // Eğer pinli ise pencereyi öne getir
+                    manager.createPinnedWindow()
+                } else {
+                    // Değilse Popover'ı aç/kapat
+                    manager.togglePopover(nil)
+                }
+            }
+            return true
+        }
+        return false
     }
 }
+
