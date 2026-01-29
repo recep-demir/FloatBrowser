@@ -1,64 +1,45 @@
 import SwiftUI
 import WebKit
-import AVFoundation
 import Combine
 
-class WebViewStore: NSObject, ObservableObject {
-    static let shared = WebViewStore()
+class WebViewCache: NSObject, ObservableObject {
+    static let shared = WebViewCache()
     
-    // 'private' ifadesi kaldırıldı, artık diğer dosyalardan erişilebilir
-    @Published var webViews: [String: WKWebView] = [:]
-    @Published var loadingStates: [String: Bool] = [:]
+    @Published private var webViews: [String: WKWebView] = [:]
     
-    override init() {
+    private override init() {
         super.init()
     }
     
-    func getWebView(for service: AIService) -> WKWebView {
-        if let webView = webViews[service.id] {
-            return webView
+    // ID ve URL ile WebView getir
+    func getWebView(forId id: String, url: URL) -> WKWebView {
+        if let existing = webViews[id] {
+            return existing
         }
         
         let config = WKWebViewConfiguration()
-        config.allowsAirPlayForMediaPlayback = true
-        config.mediaTypesRequiringUserActionForPlayback = []
+        config.websiteDataStore = .default()
+        // Allow inline playback on iOS when available, and allow autoplay by not requiring user action
+        #if os(iOS)
+        config.allowsInlineMediaPlayback = true
+        #endif
+        if #available(iOS 10.0, macOS 10.12, *) {
+            config.mediaTypesRequiringUserActionForPlayback = []
+        }
         
         let webView = WKWebView(frame: .zero, configuration: config)
-        
-        // User Agent ayarı (YouTube Music ve diğerleri için önemli)
         webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15"
         
-        webView.navigationDelegate = self
+        webViews[id] = webView
         
-        // İlk yükleme
-        let request = URLRequest(url: service.url)
+        // Cache oluşturulurken yükle
+        let request = URLRequest(url: url)
         webView.load(request)
         
-        webViews[service.id] = webView
         return webView
     }
     
-    func clearCache(for serviceId: String) {
-        webViews.removeValue(forKey: serviceId)
-    }
-    
-    func injectAudioStopScript() {
-        // Tüm webview'lerde sesi durdurmak için script çalıştır
-        for (_, webView) in webViews {
-            let script = """
-            var videos = document.getElementsByTagName('video');
-            var audios = document.getElementsByTagName('audio');
-            for(var i=0; i<videos.length; i++) videos[i].pause();
-            for(var i=0; i<audios.length; i++) audios[i].pause();
-            """
-            webView.evaluateJavaScript(script, completionHandler: nil)
-        }
-    }
-}
-
-// WKNavigationDelegate uyumluluğu
-extension WebViewStore: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        // Yükleme tamamlandığında yapılacak işlemler (boş bırakılabilir)
+    func clearCache() {
+        webViews.removeAll()
     }
 }
