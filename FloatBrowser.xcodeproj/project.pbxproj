@@ -79,6 +79,8 @@
 		266042C82F282C5A006FB55A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2660426E2F282C5A006FB55A /* README.md */; };
 		266042CA2F282C5A006FB55A /* privacyissues.png in Resources */ = {isa = PBXBuildFile; fileRef = 266042782F282C5A006FB55A /* privacyissues.png */; };
 		26DF21782F294ED30082A112 /* AIService+Pro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF21772F294ED30082A112 /* AIService+Pro.swift */; };
+		26DF217F2F29636F0082A112 /* PersistentWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF217E2F2963620082A112 /* PersistentWebView.swift */; };
+		26DF21832F296B2F0082A112 /* WebViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF21802F296AE70082A112 /* WebViewManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,6 +158,8 @@
 		266042792F282C5A006FB55A /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
 		2660427A2F282C5A006FB55A /* upi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upi.png; sourceTree = "<group>"; };
 		26DF21772F294ED30082A112 /* AIService+Pro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIService+Pro.swift"; sourceTree = "<group>"; };
+		26DF217E2F2963620082A112 /* PersistentWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentWebView.swift; sourceTree = "<group>"; };
+		26DF21802F296AE70082A112 /* WebViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				2660422A2F282C5A006FB55A /* ConversationLimiter.swift */,
+				26DF21802F296AE70082A112 /* WebViewManager.swift */,
 				2660422B2F282C5A006FB55A /* DailyUsageLimiter.swift */,
 				2660422C2F282C5A006FB55A /* KeyboardShortcutManager.swift */,
 				2660422D2F282C5A006FB55A /* MenuBarManager.swift */,
@@ -225,6 +230,7 @@
 				266042412F282C5A006FB55A /* ProAutomationView.swift */,
 				266042422F282C5A006FB55A /* ProBackupView.swift */,
 				266042432F282C5A006FB55A /* ProCollaborationView.swift */,
+				26DF217E2F2963620082A112 /* PersistentWebView.swift */,
 				266042442F282C5A006FB55A /* ProComplianceView.swift */,
 				266042452F282C5A006FB55A /* ProConsultingView.swift */,
 				266042462F282C5A006FB55A /* ProCustomizationView.swift */,
@@ -392,11 +398,13 @@
 				266042832F282C5A006FB55A /* ProSecurityView.swift in Sources */,
 				266042842F282C5A006FB55A /* PreferencesView.swift in Sources */,
 				266042852F282C5A006FB55A /* ProServiceLimiter.swift in Sources */,
+				26DF21832F296B2F0082A112 /* WebViewManager.swift in Sources */,
 				266042862F282C5A006FB55A /* PreferencesManager.swift in Sources */,
 				266042872F282C5A006FB55A /* ProComplianceView.swift in Sources */,
 				266042882F282C5A006FB55A /* ProTrainingView.swift in Sources */,
 				266042892F282C5A006FB55A /* ProScalingView.swift in Sources */,
 				2660428A2F282C5A006FB55A /* CompactChatView.swift in Sources */,
+				26DF217F2F29636F0082A112 /* PersistentWebView.swift in Sources */,
 				2660428B2F282C5A006FB55A /* WebViewWindow.swift in Sources */,
 				2660428C2F282C5A006FB55A /* ProBackupView.swift in Sources */,
 				2660428D2F282C5A006FB55A /* ProNotificationManager.swift in Sources */,
