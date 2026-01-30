@@ -9,58 +9,10 @@
 /* Begin PBXBuildFile section */
 		2660427E2F282C5A006FB55A /* WebViewCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042312F282C5A006FB55A /* WebViewCache.swift */; };
 		2660427F2F282C5A006FB55A /* MenuBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660422D2F282C5A006FB55A /* MenuBarManager.swift */; };
-		266042812F282C5A006FB55A /* ConversationLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660422A2F282C5A006FB55A /* ConversationLimiter.swift */; };
-		266042822F282C5A006FB55A /* ProEnterpriseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042482F282C5A006FB55A /* ProEnterpriseView.swift */; };
-		266042832F282C5A006FB55A /* ProSecurityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042542F282C5A006FB55A /* ProSecurityView.swift */; };
-		266042842F282C5A006FB55A /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660423D2F282C5A006FB55A /* PreferencesView.swift */; };
-		266042852F282C5A006FB55A /* ProServiceLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042552F282C5A006FB55A /* ProServiceLimiter.swift */; };
 		266042862F282C5A006FB55A /* PreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660422E2F282C5A006FB55A /* PreferencesManager.swift */; };
-		266042872F282C5A006FB55A /* ProComplianceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042442F282C5A006FB55A /* ProComplianceView.swift */; };
-		266042882F282C5A006FB55A /* ProTrainingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660425C2F282C5A006FB55A /* ProTrainingView.swift */; };
-		266042892F282C5A006FB55A /* ProScalingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042522F282C5A006FB55A /* ProScalingView.swift */; };
 		2660428A2F282C5A006FB55A /* CompactChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042392F282C5A006FB55A /* CompactChatView.swift */; };
-		2660428B2F282C5A006FB55A /* WebViewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042632F282C5A006FB55A /* WebViewWindow.swift */; };
-		2660428C2F282C5A006FB55A /* ProBackupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042422F282C5A006FB55A /* ProBackupView.swift */; };
-		2660428D2F282C5A006FB55A /* ProNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042302F282C5A006FB55A /* ProNotificationManager.swift */; };
-		2660428E2F282C5A006FB55A /* ProCustomizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042462F282C5A006FB55A /* ProCustomizationView.swift */; };
-		266042902F282C5A006FB55A /* ProConsultingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042452F282C5A006FB55A /* ProConsultingView.swift */; };
-		266042912F282C5A006FB55A /* ProMigrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660424C2F282C5A006FB55A /* ProMigrationView.swift */; };
-		266042922F282C5A006FB55A /* DailyUsageLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660422B2F282C5A006FB55A /* DailyUsageLimiter.swift */; };
-		266042932F282C5A006FB55A /* ProScreenshotWatermark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042532F282C5A006FB55A /* ProScreenshotWatermark.swift */; };
-		266042952F282C5A006FB55A /* ProManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660422F2F282C5A006FB55A /* ProManager.swift */; };
-		266042962F282C5A006FB55A /* ProAutomationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042412F282C5A006FB55A /* ProAutomationView.swift */; };
-		266042972F282C5A006FB55A /* ProIntegrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660424A2F282C5A006FB55A /* ProIntegrationView.swift */; };
-		266042982F282C5A006FB55A /* ProAdvancedAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660423E2F282C5A006FB55A /* ProAdvancedAnalyticsView.swift */; };
-		266042992F282C5A006FB55A /* ProSupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042582F282C5A006FB55A /* ProSupportView.swift */; };
-		2660429A2F282C5A006FB55A /* ProSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042562F282C5A006FB55A /* ProSplashView.swift */; };
-		2660429B2F282C5A006FB55A /* ServicePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042612F282C5A006FB55A /* ServicePickerView.swift */; };
-		2660429C2F282C5A006FB55A /* ProAPIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042402F282C5A006FB55A /* ProAPIView.swift */; };
-		2660429D2F282C5A006FB55A /* ProAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660423F2F282C5A006FB55A /* ProAnalyticsView.swift */; };
-		2660429E2F282C5A006FB55A /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042342F282C5A006FB55A /* AIService.swift */; };
-		2660429F2F282C5A006FB55A /* ProOptimizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660424E2F282C5A006FB55A /* ProOptimizationView.swift */; };
-		266042A02F282C5A006FB55A /* ProReportingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042512F282C5A006FB55A /* ProReportingView.swift */; };
-		266042A12F282C5A006FB55A /* MultiTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660423B2F282C5A006FB55A /* MultiTabView.swift */; };
-		266042A22F282C5A006FB55A /* ProPriorityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042502F282C5A006FB55A /* ProPriorityView.swift */; };
 		266042A32F282C5A006FB55A /* KeyboardShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660422C2F282C5A006FB55A /* KeyboardShortcutManager.swift */; };
-		266042A42F282C5A006FB55A /* WebViewWithWatermark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042642F282C5A006FB55A /* WebViewWithWatermark.swift */; };
-		266042A52F282C5A006FB55A /* ProMaintenanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660424B2F282C5A006FB55A /* ProMaintenanceView.swift */; };
 		266042A62F282C5A006FB55A /* AIToolsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042662F282C5A006FB55A /* AIToolsApp.swift */; };
-		266042A72F282C5A006FB55A /* ShortcutRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042622F282C5A006FB55A /* ShortcutRecorder.swift */; };
-		266042A92F282C5A006FB55A /* ProUpgradePrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660425E2F282C5A006FB55A /* ProUpgradePrompt.swift */; };
-		266042AA2F282C5A006FB55A /* ProDeploymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042472F282C5A006FB55A /* ProDeploymentView.swift */; };
-		266042AB2F282C5A006FB55A /* ProMonitoringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660424D2F282C5A006FB55A /* ProMonitoringView.swift */; };
-		266042AC2F282C5A006FB55A /* ProUpgradeBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660425D2F282C5A006FB55A /* ProUpgradeBanner.swift */; };
-		266042AD2F282C5A006FB55A /* ProWatermark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042602F282C5A006FB55A /* ProWatermark.swift */; };
-		266042AE2F282C5A006FB55A /* ProCollaborationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042432F282C5A006FB55A /* ProCollaborationView.swift */; };
-		266042AF2F282C5A006FB55A /* ProStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042572F282C5A006FB55A /* ProStatsView.swift */; };
-		266042B02F282C5A006FB55A /* ProThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660425B2F282C5A006FB55A /* ProThemeView.swift */; };
-		266042B12F282C5A006FB55A /* MainChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660423A2F282C5A006FB55A /* MainChatView.swift */; };
-		266042B22F282C5A006FB55A /* ProUsageLimitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660425F2F282C5A006FB55A /* ProUsageLimitView.swift */; };
-		266042B32F282C5A006FB55A /* ProPerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660424F2F282C5A006FB55A /* ProPerformanceView.swift */; };
-		266042B42F282C5A006FB55A /* AIWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042362F282C5A006FB55A /* AIWebView.swift */; };
-		266042B52F282C5A006FB55A /* ProTestingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660425A2F282C5A006FB55A /* ProTestingView.swift */; };
-		266042B62F282C5A006FB55A /* ProSyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042592F282C5A006FB55A /* ProSyncView.swift */; };
-		266042B72F282C5A006FB55A /* ProExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042492F282C5A006FB55A /* ProExportView.swift */; };
 		266042BD2F282C5A006FB55A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2660426A2F282C5A006FB55A /* Info.plist */; };
 		266042BE2F282C5A006FB55A /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 266042692F282C5A006FB55A /* Config.xcconfig */; };
 		266042BF2F282C5A006FB55A /* installation_guide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2660426D2F282C5A006FB55A /* installation_guide.pdf */; };
@@ -78,66 +30,15 @@
 		267016372F2B897400AD381E /* CustomApiChat.png in Resources */ = {isa = PBXBuildFile; fileRef = 267016232F2B897400AD381E /* CustomApiChat.png */; };
 		267016382F2B897400AD381E /* screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = 2670162B2F2B897400AD381E /* screenshot.png */; };
 		267016392F2B897400AD381E /* upi.png in Resources */ = {isa = PBXBuildFile; fileRef = 2670162C2F2B897400AD381E /* upi.png */; };
-		26DF21782F294ED30082A112 /* AIService+Pro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF21772F294ED30082A112 /* AIService+Pro.swift */; };
-		26DF217F2F29636F0082A112 /* PersistentWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF217E2F2963620082A112 /* PersistentWebView.swift */; };
-		26DF21832F296B2F0082A112 /* WebViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF21802F296AE70082A112 /* WebViewManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2660421A2F282AB8006FB55A /* FloatBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloatBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2660422A2F282C5A006FB55A /* ConversationLimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationLimiter.swift; sourceTree = "<group>"; };
-		2660422B2F282C5A006FB55A /* DailyUsageLimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyUsageLimiter.swift; sourceTree = "<group>"; };
 		2660422C2F282C5A006FB55A /* KeyboardShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcutManager.swift; sourceTree = "<group>"; };
 		2660422D2F282C5A006FB55A /* MenuBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarManager.swift; sourceTree = "<group>"; };
 		2660422E2F282C5A006FB55A /* PreferencesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesManager.swift; sourceTree = "<group>"; };
-		2660422F2F282C5A006FB55A /* ProManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProManager.swift; sourceTree = "<group>"; };
-		266042302F282C5A006FB55A /* ProNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProNotificationManager.swift; sourceTree = "<group>"; };
 		266042312F282C5A006FB55A /* WebViewCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewCache.swift; sourceTree = "<group>"; };
-		266042342F282C5A006FB55A /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
-		266042362F282C5A006FB55A /* AIWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIWebView.swift; sourceTree = "<group>"; };
 		266042392F282C5A006FB55A /* CompactChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactChatView.swift; sourceTree = "<group>"; };
-		2660423A2F282C5A006FB55A /* MainChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChatView.swift; sourceTree = "<group>"; };
-		2660423B2F282C5A006FB55A /* MultiTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiTabView.swift; sourceTree = "<group>"; };
-		2660423D2F282C5A006FB55A /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
-		2660423E2F282C5A006FB55A /* ProAdvancedAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProAdvancedAnalyticsView.swift; sourceTree = "<group>"; };
-		2660423F2F282C5A006FB55A /* ProAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProAnalyticsView.swift; sourceTree = "<group>"; };
-		266042402F282C5A006FB55A /* ProAPIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProAPIView.swift; sourceTree = "<group>"; };
-		266042412F282C5A006FB55A /* ProAutomationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProAutomationView.swift; sourceTree = "<group>"; };
-		266042422F282C5A006FB55A /* ProBackupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProBackupView.swift; sourceTree = "<group>"; };
-		266042432F282C5A006FB55A /* ProCollaborationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProCollaborationView.swift; sourceTree = "<group>"; };
-		266042442F282C5A006FB55A /* ProComplianceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProComplianceView.swift; sourceTree = "<group>"; };
-		266042452F282C5A006FB55A /* ProConsultingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProConsultingView.swift; sourceTree = "<group>"; };
-		266042462F282C5A006FB55A /* ProCustomizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProCustomizationView.swift; sourceTree = "<group>"; };
-		266042472F282C5A006FB55A /* ProDeploymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProDeploymentView.swift; sourceTree = "<group>"; };
-		266042482F282C5A006FB55A /* ProEnterpriseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProEnterpriseView.swift; sourceTree = "<group>"; };
-		266042492F282C5A006FB55A /* ProExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProExportView.swift; sourceTree = "<group>"; };
-		2660424A2F282C5A006FB55A /* ProIntegrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProIntegrationView.swift; sourceTree = "<group>"; };
-		2660424B2F282C5A006FB55A /* ProMaintenanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProMaintenanceView.swift; sourceTree = "<group>"; };
-		2660424C2F282C5A006FB55A /* ProMigrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProMigrationView.swift; sourceTree = "<group>"; };
-		2660424D2F282C5A006FB55A /* ProMonitoringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProMonitoringView.swift; sourceTree = "<group>"; };
-		2660424E2F282C5A006FB55A /* ProOptimizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProOptimizationView.swift; sourceTree = "<group>"; };
-		2660424F2F282C5A006FB55A /* ProPerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProPerformanceView.swift; sourceTree = "<group>"; };
-		266042502F282C5A006FB55A /* ProPriorityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProPriorityView.swift; sourceTree = "<group>"; };
-		266042512F282C5A006FB55A /* ProReportingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProReportingView.swift; sourceTree = "<group>"; };
-		266042522F282C5A006FB55A /* ProScalingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProScalingView.swift; sourceTree = "<group>"; };
-		266042532F282C5A006FB55A /* ProScreenshotWatermark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProScreenshotWatermark.swift; sourceTree = "<group>"; };
-		266042542F282C5A006FB55A /* ProSecurityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProSecurityView.swift; sourceTree = "<group>"; };
-		266042552F282C5A006FB55A /* ProServiceLimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProServiceLimiter.swift; sourceTree = "<group>"; };
-		266042562F282C5A006FB55A /* ProSplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProSplashView.swift; sourceTree = "<group>"; };
-		266042572F282C5A006FB55A /* ProStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProStatsView.swift; sourceTree = "<group>"; };
-		266042582F282C5A006FB55A /* ProSupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProSupportView.swift; sourceTree = "<group>"; };
-		266042592F282C5A006FB55A /* ProSyncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProSyncView.swift; sourceTree = "<group>"; };
-		2660425A2F282C5A006FB55A /* ProTestingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProTestingView.swift; sourceTree = "<group>"; };
-		2660425B2F282C5A006FB55A /* ProThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProThemeView.swift; sourceTree = "<group>"; };
-		2660425C2F282C5A006FB55A /* ProTrainingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProTrainingView.swift; sourceTree = "<group>"; };
-		2660425D2F282C5A006FB55A /* ProUpgradeBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProUpgradeBanner.swift; sourceTree = "<group>"; };
-		2660425E2F282C5A006FB55A /* ProUpgradePrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProUpgradePrompt.swift; sourceTree = "<group>"; };
-		2660425F2F282C5A006FB55A /* ProUsageLimitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProUsageLimitView.swift; sourceTree = "<group>"; };
-		266042602F282C5A006FB55A /* ProWatermark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProWatermark.swift; sourceTree = "<group>"; };
-		266042612F282C5A006FB55A /* ServicePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicePickerView.swift; sourceTree = "<group>"; };
-		266042622F282C5A006FB55A /* ShortcutRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutRecorder.swift; sourceTree = "<group>"; };
-		266042632F282C5A006FB55A /* WebViewWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewWindow.swift; sourceTree = "<group>"; };
-		266042642F282C5A006FB55A /* WebViewWithWatermark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewWithWatermark.swift; sourceTree = "<group>"; };
 		266042662F282C5A006FB55A /* AIToolsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIToolsApp.swift; sourceTree = "<group>"; };
 		266042672F282C5A006FB55A /* AppleAI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppleAI.entitlements; sourceTree = "<group>"; };
 		266042682F282C5A006FB55A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -157,9 +58,6 @@
 		2670162A2F2B897400AD381E /* privacyissues.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = privacyissues.png; sourceTree = "<group>"; };
 		2670162B2F2B897400AD381E /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
 		2670162C2F2B897400AD381E /* upi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upi.png; sourceTree = "<group>"; };
-		26DF21772F294ED30082A112 /* AIService+Pro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIService+Pro.swift"; sourceTree = "<group>"; };
-		26DF217E2F2963620082A112 /* PersistentWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentWebView.swift; sourceTree = "<group>"; };
-		26DF21802F296AE70082A112 /* WebViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,76 +93,18 @@
 		266042332F282C5A006FB55A /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				2660422A2F282C5A006FB55A /* ConversationLimiter.swift */,
-				26DF21802F296AE70082A112 /* WebViewManager.swift */,
-				2660422B2F282C5A006FB55A /* DailyUsageLimiter.swift */,
 				2660422C2F282C5A006FB55A /* KeyboardShortcutManager.swift */,
 				2660422D2F282C5A006FB55A /* MenuBarManager.swift */,
 				2660422E2F282C5A006FB55A /* PreferencesManager.swift */,
-				2660422F2F282C5A006FB55A /* ProManager.swift */,
-				266042302F282C5A006FB55A /* ProNotificationManager.swift */,
 				266042312F282C5A006FB55A /* WebViewCache.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		266042352F282C5A006FB55A /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				266042342F282C5A006FB55A /* AIService.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		266042652F282C5A006FB55A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				266042362F282C5A006FB55A /* AIWebView.swift */,
 				266042392F282C5A006FB55A /* CompactChatView.swift */,
-				2660423A2F282C5A006FB55A /* MainChatView.swift */,
-				2660423B2F282C5A006FB55A /* MultiTabView.swift */,
-				2660423D2F282C5A006FB55A /* PreferencesView.swift */,
-				2660423E2F282C5A006FB55A /* ProAdvancedAnalyticsView.swift */,
-				2660423F2F282C5A006FB55A /* ProAnalyticsView.swift */,
-				266042402F282C5A006FB55A /* ProAPIView.swift */,
-				266042412F282C5A006FB55A /* ProAutomationView.swift */,
-				266042422F282C5A006FB55A /* ProBackupView.swift */,
-				266042432F282C5A006FB55A /* ProCollaborationView.swift */,
-				26DF217E2F2963620082A112 /* PersistentWebView.swift */,
-				266042442F282C5A006FB55A /* ProComplianceView.swift */,
-				266042452F282C5A006FB55A /* ProConsultingView.swift */,
-				266042462F282C5A006FB55A /* ProCustomizationView.swift */,
-				266042472F282C5A006FB55A /* ProDeploymentView.swift */,
-				266042482F282C5A006FB55A /* ProEnterpriseView.swift */,
-				266042492F282C5A006FB55A /* ProExportView.swift */,
-				2660424A2F282C5A006FB55A /* ProIntegrationView.swift */,
-				2660424B2F282C5A006FB55A /* ProMaintenanceView.swift */,
-				2660424C2F282C5A006FB55A /* ProMigrationView.swift */,
-				2660424D2F282C5A006FB55A /* ProMonitoringView.swift */,
-				2660424E2F282C5A006FB55A /* ProOptimizationView.swift */,
-				2660424F2F282C5A006FB55A /* ProPerformanceView.swift */,
-				266042502F282C5A006FB55A /* ProPriorityView.swift */,
-				266042512F282C5A006FB55A /* ProReportingView.swift */,
-				266042522F282C5A006FB55A /* ProScalingView.swift */,
-				266042532F282C5A006FB55A /* ProScreenshotWatermark.swift */,
-				266042542F282C5A006FB55A /* ProSecurityView.swift */,
-				266042552F282C5A006FB55A /* ProServiceLimiter.swift */,
-				266042562F282C5A006FB55A /* ProSplashView.swift */,
-				266042572F282C5A006FB55A /* ProStatsView.swift */,
-				266042582F282C5A006FB55A /* ProSupportView.swift */,
-				266042592F282C5A006FB55A /* ProSyncView.swift */,
-				2660425A2F282C5A006FB55A /* ProTestingView.swift */,
-				2660425B2F282C5A006FB55A /* ProThemeView.swift */,
-				2660425C2F282C5A006FB55A /* ProTrainingView.swift */,
-				2660425D2F282C5A006FB55A /* ProUpgradeBanner.swift */,
-				2660425E2F282C5A006FB55A /* ProUpgradePrompt.swift */,
-				2660425F2F282C5A006FB55A /* ProUsageLimitView.swift */,
-				266042602F282C5A006FB55A /* ProWatermark.swift */,
-				266042612F282C5A006FB55A /* ServicePickerView.swift */,
-				266042622F282C5A006FB55A /* ShortcutRecorder.swift */,
-				266042632F282C5A006FB55A /* WebViewWindow.swift */,
-				266042642F282C5A006FB55A /* WebViewWithWatermark.swift */,
-				26DF21772F294ED30082A112 /* AIService+Pro.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -273,7 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				266042332F282C5A006FB55A /* Managers */,
-				266042352F282C5A006FB55A /* Models */,
 				266042652F282C5A006FB55A /* Views */,
 				266042662F282C5A006FB55A /* AIToolsApp.swift */,
 				266042672F282C5A006FB55A /* AppleAI.entitlements */,
@@ -393,61 +232,10 @@
 			files = (
 				2660427E2F282C5A006FB55A /* WebViewCache.swift in Sources */,
 				2660427F2F282C5A006FB55A /* MenuBarManager.swift in Sources */,
-				266042812F282C5A006FB55A /* ConversationLimiter.swift in Sources */,
-				266042822F282C5A006FB55A /* ProEnterpriseView.swift in Sources */,
-				266042832F282C5A006FB55A /* ProSecurityView.swift in Sources */,
-				266042842F282C5A006FB55A /* PreferencesView.swift in Sources */,
-				266042852F282C5A006FB55A /* ProServiceLimiter.swift in Sources */,
-				26DF21832F296B2F0082A112 /* WebViewManager.swift in Sources */,
 				266042862F282C5A006FB55A /* PreferencesManager.swift in Sources */,
-				266042872F282C5A006FB55A /* ProComplianceView.swift in Sources */,
-				266042882F282C5A006FB55A /* ProTrainingView.swift in Sources */,
-				266042892F282C5A006FB55A /* ProScalingView.swift in Sources */,
 				2660428A2F282C5A006FB55A /* CompactChatView.swift in Sources */,
-				26DF217F2F29636F0082A112 /* PersistentWebView.swift in Sources */,
-				2660428B2F282C5A006FB55A /* WebViewWindow.swift in Sources */,
-				2660428C2F282C5A006FB55A /* ProBackupView.swift in Sources */,
-				2660428D2F282C5A006FB55A /* ProNotificationManager.swift in Sources */,
-				2660428E2F282C5A006FB55A /* ProCustomizationView.swift in Sources */,
-				266042902F282C5A006FB55A /* ProConsultingView.swift in Sources */,
-				266042912F282C5A006FB55A /* ProMigrationView.swift in Sources */,
-				266042922F282C5A006FB55A /* DailyUsageLimiter.swift in Sources */,
-				266042932F282C5A006FB55A /* ProScreenshotWatermark.swift in Sources */,
-				266042952F282C5A006FB55A /* ProManager.swift in Sources */,
-				266042962F282C5A006FB55A /* ProAutomationView.swift in Sources */,
-				266042972F282C5A006FB55A /* ProIntegrationView.swift in Sources */,
-				266042982F282C5A006FB55A /* ProAdvancedAnalyticsView.swift in Sources */,
-				266042992F282C5A006FB55A /* ProSupportView.swift in Sources */,
-				2660429A2F282C5A006FB55A /* ProSplashView.swift in Sources */,
-				2660429B2F282C5A006FB55A /* ServicePickerView.swift in Sources */,
-				2660429C2F282C5A006FB55A /* ProAPIView.swift in Sources */,
-				2660429D2F282C5A006FB55A /* ProAnalyticsView.swift in Sources */,
-				2660429E2F282C5A006FB55A /* AIService.swift in Sources */,
-				2660429F2F282C5A006FB55A /* ProOptimizationView.swift in Sources */,
-				266042A02F282C5A006FB55A /* ProReportingView.swift in Sources */,
-				266042A12F282C5A006FB55A /* MultiTabView.swift in Sources */,
-				266042A22F282C5A006FB55A /* ProPriorityView.swift in Sources */,
 				266042A32F282C5A006FB55A /* KeyboardShortcutManager.swift in Sources */,
-				266042A42F282C5A006FB55A /* WebViewWithWatermark.swift in Sources */,
-				266042A52F282C5A006FB55A /* ProMaintenanceView.swift in Sources */,
-				26DF21782F294ED30082A112 /* AIService+Pro.swift in Sources */,
 				266042A62F282C5A006FB55A /* AIToolsApp.swift in Sources */,
-				266042A72F282C5A006FB55A /* ShortcutRecorder.swift in Sources */,
-				266042A92F282C5A006FB55A /* ProUpgradePrompt.swift in Sources */,
-				266042AA2F282C5A006FB55A /* ProDeploymentView.swift in Sources */,
-				266042AB2F282C5A006FB55A /* ProMonitoringView.swift in Sources */,
-				266042AC2F282C5A006FB55A /* ProUpgradeBanner.swift in Sources */,
-				266042AD2F282C5A006FB55A /* ProWatermark.swift in Sources */,
-				266042AE2F282C5A006FB55A /* ProCollaborationView.swift in Sources */,
-				266042AF2F282C5A006FB55A /* ProStatsView.swift in Sources */,
-				266042B02F282C5A006FB55A /* ProThemeView.swift in Sources */,
-				266042B12F282C5A006FB55A /* MainChatView.swift in Sources */,
-				266042B22F282C5A006FB55A /* ProUsageLimitView.swift in Sources */,
-				266042B32F282C5A006FB55A /* ProPerformanceView.swift in Sources */,
-				266042B42F282C5A006FB55A /* AIWebView.swift in Sources */,
-				266042B52F282C5A006FB55A /* ProTestingView.swift in Sources */,
-				266042B62F282C5A006FB55A /* ProSyncView.swift in Sources */,
-				266042B72F282C5A006FB55A /* ProExportView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
