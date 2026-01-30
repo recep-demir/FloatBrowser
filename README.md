@@ -5,7 +5,7 @@ FloatBrowser is a minimalist, lightweight, and privacy-focused macOS menu bar cl
 Designed to be unobtrusive, it lives in your menu bar and can be detached into a floating window that stays on top of your work. No bloat, no subscriptions, just instant AI access.
 
 <div align="center">
-  <img src="requirements/interface.png" alt="FloatBrowser Interface" width="100%">
+    <img src="requirements/menu-mode.png" alt="Menu Bar Mode" width="45%">
 </div>
 
 ## Features
@@ -23,7 +23,7 @@ Designed to be unobtrusive, it lives in your menu bar and can be detached into a
 
 <div align="center">
   <img src="requirements/float-mode.png" alt="Float Mode" width="45%">
-  <img src="requirements/menu-mode.png" alt="Menu Bar Mode" width="45%">
+  
 </div>
 
 ## Installation
