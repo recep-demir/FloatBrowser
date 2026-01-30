@@ -18,8 +18,8 @@
 		266042BF2F282C5A006FB55A /* installation_guide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2660426D2F282C5A006FB55A /* installation_guide.pdf */; };
 		266042C02F282C5A006FB55A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 266042682F282C5A006FB55A /* Assets.xcassets */; };
 		266042C82F282C5A006FB55A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2660426E2F282C5A006FB55A /* README.md */; };
-		26E5384C2F2D6A5B00360942 /* menu-mode.png in Resources */ = {isa = PBXBuildFile; fileRef = 26E5384A2F2D6A5B00360942 /* menu-mode.png */; };
-		26E538512F2D6AD700360942 /* float-mode.png in Resources */ = {isa = PBXBuildFile; fileRef = 26E538502F2D6AD700360942 /* float-mode.png */; };
+		26E538532F2D6CBF00360942 /* menu-mode.png in Resources */ = {isa = PBXBuildFile; fileRef = 26E538522F2D6CBF00360942 /* menu-mode.png */; };
+		26E538552F2D6CEF00360942 /* float1-mode.png in Resources */ = {isa = PBXBuildFile; fileRef = 26E538542F2D6CEF00360942 /* float1-mode.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,8 +36,8 @@
 		2660426A2F282C5A006FB55A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2660426D2F282C5A006FB55A /* installation_guide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = installation_guide.pdf; sourceTree = "<group>"; };
 		2660426E2F282C5A006FB55A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		26E5384A2F2D6A5B00360942 /* menu-mode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-mode.png"; sourceTree = "<group>"; };
-		26E538502F2D6AD700360942 /* float-mode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "float-mode.png"; sourceTree = "<group>"; };
+		26E538522F2D6CBF00360942 /* menu-mode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-mode.png"; sourceTree = "<group>"; };
+		26E538542F2D6CEF00360942 /* float1-mode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "float1-mode.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,8 +106,8 @@
 		2670162D2F2B897400AD381E /* requirements */ = {
 			isa = PBXGroup;
 			children = (
-				26E538502F2D6AD700360942 /* float-mode.png */,
-				26E5384A2F2D6A5B00360942 /* menu-mode.png */,
+				26E538522F2D6CBF00360942 /* menu-mode.png */,
+				26E538542F2D6CEF00360942 /* float1-mode.png */,
 			);
 			path = requirements;
 			sourceTree = "<group>";
@@ -176,9 +176,9 @@
 				266042BD2F282C5A006FB55A /* Info.plist in Resources */,
 				266042BE2F282C5A006FB55A /* Config.xcconfig in Resources */,
 				266042BF2F282C5A006FB55A /* installation_guide.pdf in Resources */,
-				26E538512F2D6AD700360942 /* float-mode.png in Resources */,
-				26E5384C2F2D6A5B00360942 /* menu-mode.png in Resources */,
+				26E538532F2D6CBF00360942 /* menu-mode.png in Resources */,
 				266042C02F282C5A006FB55A /* Assets.xcassets in Resources */,
+				26E538552F2D6CEF00360942 /* float1-mode.png in Resources */,
 				266042C82F282C5A006FB55A /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
