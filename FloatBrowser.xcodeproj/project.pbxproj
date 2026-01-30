@@ -18,18 +18,8 @@
 		266042BF2F282C5A006FB55A /* installation_guide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2660426D2F282C5A006FB55A /* installation_guide.pdf */; };
 		266042C02F282C5A006FB55A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 266042682F282C5A006FB55A /* Assets.xcassets */; };
 		266042C82F282C5A006FB55A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2660426E2F282C5A006FB55A /* README.md */; };
-		2670162E2F2B897400AD381E /* interface.png in Resources */ = {isa = PBXBuildFile; fileRef = 267016262F2B897400AD381E /* interface.png */; };
-		2670162F2F2B897400AD381E /* general.png in Resources */ = {isa = PBXBuildFile; fileRef = 267016252F2B897400AD381E /* general.png */; };
-		267016302F2B897400AD381E /* Changeshortcuts.png in Resources */ = {isa = PBXBuildFile; fileRef = 267016222F2B897400AD381E /* Changeshortcuts.png */; };
-		267016312F2B897400AD381E /* gatekeeperwarning.png in Resources */ = {isa = PBXBuildFile; fileRef = 267016242F2B897400AD381E /* gatekeeperwarning.png */; };
-		267016322F2B897400AD381E /* moreai.png in Resources */ = {isa = PBXBuildFile; fileRef = 267016272F2B897400AD381E /* moreai.png */; };
-		267016332F2B897400AD381E /* AppleAi.png in Resources */ = {isa = PBXBuildFile; fileRef = 267016212F2B897400AD381E /* AppleAi.png */; };
-		267016342F2B897400AD381E /* privacyissues.png in Resources */ = {isa = PBXBuildFile; fileRef = 2670162A2F2B897400AD381E /* privacyissues.png */; };
-		267016352F2B897400AD381E /* paypal.png in Resources */ = {isa = PBXBuildFile; fileRef = 267016282F2B897400AD381E /* paypal.png */; };
-		267016362F2B897400AD381E /* preferences.png in Resources */ = {isa = PBXBuildFile; fileRef = 267016292F2B897400AD381E /* preferences.png */; };
-		267016372F2B897400AD381E /* CustomApiChat.png in Resources */ = {isa = PBXBuildFile; fileRef = 267016232F2B897400AD381E /* CustomApiChat.png */; };
-		267016382F2B897400AD381E /* screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = 2670162B2F2B897400AD381E /* screenshot.png */; };
-		267016392F2B897400AD381E /* upi.png in Resources */ = {isa = PBXBuildFile; fileRef = 2670162C2F2B897400AD381E /* upi.png */; };
+		26E5384C2F2D6A5B00360942 /* menu-mode.png in Resources */ = {isa = PBXBuildFile; fileRef = 26E5384A2F2D6A5B00360942 /* menu-mode.png */; };
+		26E538512F2D6AD700360942 /* float-mode.png in Resources */ = {isa = PBXBuildFile; fileRef = 26E538502F2D6AD700360942 /* float-mode.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,18 +36,8 @@
 		2660426A2F282C5A006FB55A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2660426D2F282C5A006FB55A /* installation_guide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = installation_guide.pdf; sourceTree = "<group>"; };
 		2660426E2F282C5A006FB55A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		267016212F2B897400AD381E /* AppleAi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppleAi.png; sourceTree = "<group>"; };
-		267016222F2B897400AD381E /* Changeshortcuts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Changeshortcuts.png; sourceTree = "<group>"; };
-		267016232F2B897400AD381E /* CustomApiChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CustomApiChat.png; sourceTree = "<group>"; };
-		267016242F2B897400AD381E /* gatekeeperwarning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gatekeeperwarning.png; sourceTree = "<group>"; };
-		267016252F2B897400AD381E /* general.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = general.png; sourceTree = "<group>"; };
-		267016262F2B897400AD381E /* interface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = interface.png; sourceTree = "<group>"; };
-		267016272F2B897400AD381E /* moreai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moreai.png; sourceTree = "<group>"; };
-		267016282F2B897400AD381E /* paypal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paypal.png; sourceTree = "<group>"; };
-		267016292F2B897400AD381E /* preferences.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preferences.png; sourceTree = "<group>"; };
-		2670162A2F2B897400AD381E /* privacyissues.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = privacyissues.png; sourceTree = "<group>"; };
-		2670162B2F2B897400AD381E /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
-		2670162C2F2B897400AD381E /* upi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upi.png; sourceTree = "<group>"; };
+		26E5384A2F2D6A5B00360942 /* menu-mode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-mode.png"; sourceTree = "<group>"; };
+		26E538502F2D6AD700360942 /* float-mode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "float-mode.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,18 +106,8 @@
 		2670162D2F2B897400AD381E /* requirements */ = {
 			isa = PBXGroup;
 			children = (
-				267016212F2B897400AD381E /* AppleAi.png */,
-				267016222F2B897400AD381E /* Changeshortcuts.png */,
-				267016232F2B897400AD381E /* CustomApiChat.png */,
-				267016242F2B897400AD381E /* gatekeeperwarning.png */,
-				267016252F2B897400AD381E /* general.png */,
-				267016262F2B897400AD381E /* interface.png */,
-				267016272F2B897400AD381E /* moreai.png */,
-				267016282F2B897400AD381E /* paypal.png */,
-				267016292F2B897400AD381E /* preferences.png */,
-				2670162A2F2B897400AD381E /* privacyissues.png */,
-				2670162B2F2B897400AD381E /* screenshot.png */,
-				2670162C2F2B897400AD381E /* upi.png */,
+				26E538502F2D6AD700360942 /* float-mode.png */,
+				26E5384A2F2D6A5B00360942 /* menu-mode.png */,
 			);
 			path = requirements;
 			sourceTree = "<group>";
@@ -206,18 +176,8 @@
 				266042BD2F282C5A006FB55A /* Info.plist in Resources */,
 				266042BE2F282C5A006FB55A /* Config.xcconfig in Resources */,
 				266042BF2F282C5A006FB55A /* installation_guide.pdf in Resources */,
-				2670162E2F2B897400AD381E /* interface.png in Resources */,
-				2670162F2F2B897400AD381E /* general.png in Resources */,
-				267016302F2B897400AD381E /* Changeshortcuts.png in Resources */,
-				267016312F2B897400AD381E /* gatekeeperwarning.png in Resources */,
-				267016322F2B897400AD381E /* moreai.png in Resources */,
-				267016332F2B897400AD381E /* AppleAi.png in Resources */,
-				267016342F2B897400AD381E /* privacyissues.png in Resources */,
-				267016352F2B897400AD381E /* paypal.png in Resources */,
-				267016362F2B897400AD381E /* preferences.png in Resources */,
-				267016372F2B897400AD381E /* CustomApiChat.png in Resources */,
-				267016382F2B897400AD381E /* screenshot.png in Resources */,
-				267016392F2B897400AD381E /* upi.png in Resources */,
+				26E538512F2D6AD700360942 /* float-mode.png in Resources */,
+				26E5384C2F2D6A5B00360942 /* menu-mode.png in Resources */,
 				266042C02F282C5A006FB55A /* Assets.xcassets in Resources */,
 				266042C82F282C5A006FB55A /* README.md in Resources */,
 			);

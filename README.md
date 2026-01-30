@@ -1,143 +1,71 @@
-# Apple AI for macOS
+# FloatBrowser
 
-Apple AI is a lightweight, privacy‑minded macOS menu bar app that keeps your favorite AI assistants one keystroke away. Open a compact, always‑on‑top chat window and jump between services like ChatGPT, Claude, Copilot, Perplexity, Gemini, and more — all from one place.
+FloatBrowser is a minimalist, lightweight, and privacy-focused macOS menu bar client exclusively for **Google Gemini**.
 
-Now available as AppleAi Pro
+Designed to be unobtrusive, it lives in your menu bar and can be detached into a floating window that stays on top of your work. No bloat, no subscriptions, just instant AI access.
+
 <div align="center">
-  <a href="https://www.theappleai.tech/pricing" style="display:inline-block;background:#007aff;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600;">
-    🚀 Upgrade to AppleAi Pro — Pricing
-  </a>
+  <img src="requirements/interface.png" alt="FloatBrowser Interface" width="100%">
 </div>
 
-## Download
-Choose either official site to get the latest DMG:
-- [Download from MacBunny](https://macbunny.co/appleai)
-- [Download from TheAppleAI](https://www.theappleai.tech)
+## Features
 
-
-## App Preview
-<div align="center">
-  <img src="requirements/interface.png" alt="Apple AI Interface" width="100%">
-</div>
-
-## Video Demo
-<div align="center">
-  <a href="https://www.youtube.com/watch?v=w8iF1g3psdA">
-    <img src="https://img.youtube.com/vi/w8iF1g3psdA/maxresdefault.jpg" alt="Watch Apple AI Demo" width="80%">
-  </a>
-  <p><em>Click to watch the demo video</em></p>
-</div>
+- **Menu Bar Access:** Quick access to Gemini with a single click or keystroke.
+- **Float & Pin Mode:** Detach the window from the menu bar to keep it persistent on your desktop.
+- **Always on Top:** Keep the chat window visible while you work in other apps (toggleable).
+- **Native macOS Feel:** Minimized interface with native traffic light buttons and transparent headers.
+- **Zoom Controls:** Adjustable text size for better readability (Right-click menu).
+- **Global Shortcut:** Toggle the window instantly from anywhere using `⌥ + ⌘ + G`.
+- **Battery Friendly:** Optimized for low energy impact (App Nap supported).
+- **Privacy Focused:** Acts as a direct wrapper for Gemini. No data collection, no middleman servers.
 
 ## Screenshots
 
 <div align="center">
-  <img src="requirements/general.png" alt="General Settings" width="49%">
-  <img src="requirements/preferences.png" alt="Preferences" width="49%">
+  <img src="requirements/float-mode.png" alt="Float Mode" width="45%">
+  <img src="requirements/menu-mode.png" alt="Menu Bar Mode" width="45%">
 </div>
-
-<div align="center">
-  <img src="requirements/Changeshortcuts.png" alt="Change Shortcuts" width="49%">
-</div>
-
-
-
-<div align="center">
-  <img src="requirements/screenshot.png" alt="Screenshot Feature" width="49%">
- <img src="requirements/moreai.png" alt="More ai models" width="49%">
-</div>
-
-## Features
-- Menu bar access with a compact, distraction‑free chat window
-- Quick model switching with icons for each service
-- Global shortcut to toggle the window: ⌘E
-- Always on Top mode to keep the chat visible while you work
-- Pinnable interface so the window stays put while multitasking
-- Instant access to all assistants from the menu bar
-- Persistent sessions per assistant across app restarts
-- Native macOS performance (Swift + SwiftUI, WKWebView)
-- Resource‑efficient compared to multiple browser tabs
-- Clean, modern UI that follows macOS design guidelines
-- Customizable themes: light/dark with accent color options
-- Smart history: search and reference past conversations
-- Privacy‑focused: all preferences and data stored locally by default
-- Full keyboard support: ⌘C, ⌘V, ⌘A work in all chat inputs
-- Open at Login option for quick startup
-- Simple, fast, and local — no auto‑updaters, no background daemons
-
-## Supported services
-- ChatGPT
-- Claude
-- Copilot
-- Perplexity
-- DeepSeek
-- Grok
-- Mistral
-- Gemini
-- Pi
-- Blackbox
-- Meta
-- Zhipu AI
-- MCP Chat
-- askAppleAI (custom entry)
-
-The visibility of individual services can be toggled in Preferences.
 
 ## Installation
-1. Download the latest DMG `Apple_AI_Universal.dmg` from [MacBunny](https://macbunny.co/appleai)
-2. Open the DMG and drag “Apple AI” to Applications.
-3. Launch Apple AI. A star icon appears in the macOS menu bar.
 
-Tip: If macOS warns that the app is from an unidentified developer, open System Settings → Privacy & Security and click "Open Anyway".
+1. Download the latest `FloatBrowser.dmg` from the [Releases](https://github.com/recepdemir/FloatBrowser/releases) page.
+2. Open the DMG file and drag **FloatBrowser** to your **Applications** folder.
+3. Launch the app. You will see the **Sparkles** (✨) icon in your menu bar.
 
-### First Launch Security
-- When installing Apple AI, you may encounter a security warning due to macOS's Gatekeeper feature
-![Security Warning](requirements/gatekeeperwarning.png)
-- This is a normal security measure to ensure the app is from a trusted source
-   
-
-- If you see a security warning, go to System Settings > Privacy & Security and click 
-"Open Anyway"
-![Open Anyway](requirements/privacyissues.png)
-
-
-
-## Preferences
-Open Preferences from the menu:
-- Always on top: Keep the chat window above other apps.
-- Open at Login: Start Apple AI automatically when you log in.
-- Models: Show/hide the services you want in the quick menu.
-- Keyboard Shortcuts: Toggle Window is fixed to ⌘E for reliability.
-- About: Shows the app version and helpful links.
+> **Note:** Since this is an open-source app not signed with a paid Apple ID, you might see a warning that the app is "damaged" or from an "unidentified developer".
+>
+> **To fix this:**
+> 1. Open **System Settings** -> **Privacy & Security**.
+> 2. Scroll down to the Security section and click **"Open Anyway"**.
+> 3. Or run this command in Terminal: `xattr -cr /Applications/FloatBrowser.app`
 
 ## Keyboard Shortcuts
-- ⌘E: Toggle Apple AI window open/closed (works globally across apps)
-- Standard text editing in chat inputs: ⌘C, ⌘V, ⌘A
 
-## Privacy
-- Apple AI runs entirely on your Mac. It opens each service’s official website in a WKWebView.
-- Your chats and settings remain on your device. We do not collect your data.
-- Microphone and screen access are only requested when you use features inside those web apps (e.g., voice chat or screenshot uploads).
+| Shortcut | Action |
+| :--- | :--- |
+| **⌥ + ⌘ + G** | Toggle Window (Global) |
+| **⌘ + Q** | Quit App |
+| **Right Click (Icon)** | Open Settings Menu |
 
-## Compatibility
-- macOS Monterey (12.0) and later
-- Apple Silicon (M1/M2/M3) and Intel Macs
-- Universal DMG recommended for best compatibility
+## How to Use
 
+1. **Click the Menu Bar Icon:** Opens the compact chat view.
+2. **Pin the Window:** Click the 📌 icon to detach the window.
+3. **Always on Top:** In pinned mode, click the layer icon (next to traffic lights) to keep the window above other apps.
+4. **Settings:** Right-click the menu bar icon to adjust **Text Size** or enable **Launch at Login**.
 
+## Tech Stack
 
-
-## Troubleshooting
-- “App is damaged and can’t be opened”: run `xattr -cr "/Applications/Apple AI.app"` or use System Settings → Privacy & Security → Open Anyway.
-- Global shortcut not working: ensure no other app uses ⌘E globally.
-- Chat not accepting input: click once inside the web view to focus, or toggle the window with ⌘E.
+- **Language:** Swift 5
+- **UI:** SwiftUI + AppKit
+- **Engine:** WKWebView (Optimized)
 
 ## License
-This repository is provided for personal use. See source headers for details.
 
-## Credits
-- Designed and developed by MacBunny.
-- Icons for services belong to their respective owners.
+This project is open source and available under the [MIT License](LICENSE).
 
-—
-If you have suggestions or run into issues, open an issue on GitHub or reach out via the links in Preferences.
+---
 
+<div align="center">
+  <sub>Designed with simplicity in mind.</sub>
+</div>
