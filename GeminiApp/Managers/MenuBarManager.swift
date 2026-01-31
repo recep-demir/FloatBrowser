@@ -15,8 +15,38 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
     override private init() {
         super.init()
         setupMenuBar()
-        KeyboardShortcutManager.shared.setup()
         setupPopover()
+        
+        // Kısayol yöneticisini başlat
+        KeyboardShortcutManager.shared.setup()
+    }
+    
+    // --- KISAYOL TETİKLEYİCİSİ ---
+    func toggleAppFromShortcut() {
+        // Her durumda uygulamayı "Zorla" öne getir
+        NSApp.activate(ignoringOtherApps: true)
+        
+        // 1. Pinli Pencere Açıksa -> Kapat
+        if let window = pinnedWindow, window.isVisible {
+            window.close() // Kapat (isPinned false olur, bir sonraki açılışta Float açılır)
+            return
+        }
+        
+        // 2. Popover (Float) Açıksa -> Kapat
+        if let popover = popover, popover.isShown {
+            popover.performClose(nil)
+            return
+        }
+        
+        // 3. Hiçbiri Açık Değilse -> Aç
+        // (En son pinli bıraktıysak pinli aç, yoksa popover aç)
+        if isPinned {
+            createPinnedWindow()
+        } else {
+            if let button = statusItem?.button {
+                togglePopover(button)
+            }
+        }
     }
     
     private func setupMenuBar() {
@@ -64,7 +94,6 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
     @objc func menuBarButtonClicked(_ sender: NSStatusBarButton) {
         let event = NSApp.currentEvent
         if event?.type == .rightMouseUp {
-            // Sağ tık menüsü (Launch at Login, Quit vs.)
             let menu = NSMenu()
             
             let zoomItem = NSMenuItem()
@@ -72,19 +101,19 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
             zoomView.frame = NSRect(x: 0, y: 0, width: 220, height: 40)
             zoomItem.view = zoomView
             menu.addItem(zoomItem)
-            menu.addItem(NSMenuItem.separator())
             
+            menu.addItem(NSMenuItem.separator())
             let launchItem = NSMenuItem(title: "Launch at Login", action: #selector(toggleLaunchAtLogin), keyEquivalent: "")
             launchItem.target = self
             launchItem.state = PreferencesManager.shared.launchAtLogin ? .on : .off
             menu.addItem(launchItem)
-            menu.addItem(NSMenuItem.separator())
             
+            menu.addItem(NSMenuItem.separator())
             let infoItem = NSMenuItem(title: "Global Shortcut: ⌥⌘G", action: nil, keyEquivalent: "")
             infoItem.isEnabled = false
             menu.addItem(infoItem)
-            menu.addItem(NSMenuItem.separator())
             
+            menu.addItem(NSMenuItem.separator())
             let quitItem = NSMenuItem(title: "Quit", action: #selector(quitApp), keyEquivalent: "q")
             quitItem.target = self
             menu.addItem(quitItem)
@@ -93,24 +122,15 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
             statusItem?.button?.performClick(nil)
             statusItem?.menu = nil
         } else {
-            // --- SORUN 2 ÇÖZÜMÜ: FOCUS ---
-            // AOT kapalı olsa bile pencereyi öne getir
+            // SOL TIK
+            // Uygulamayı öne getir (Focus sorunu çözümü)
+            NSApp.activate(ignoringOtherApps: true)
+            
             if isPinned {
-                // Uygulamayı aktifleştir (Öne getir)
-                NSApp.activate(ignoringOtherApps: true)
-                
                 if let window = pinnedWindow {
-                    if window.isVisible {
-                        window.orderFront(nil)
-                    } else {
-                        window.makeKeyAndOrderFront(nil)
-                    }
-                } else {
-                    createPinnedWindow()
-                }
-            } else {
-                togglePopover(sender)
-            }
+                    if window.isVisible { window.orderFront(nil) } else { window.makeKeyAndOrderFront(nil) }
+                } else { createPinnedWindow() }
+            } else { togglePopover(sender) }
         }
     }
     
@@ -129,24 +149,24 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
     }
     
     func togglePin() {
-        isPinned.toggle()
         if isPinned {
-            // Pinledik: Popover'ı kapat, Pencereyi aç
-            popover?.close()
-            popover = nil
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.createPinnedWindow()
-            }
-        } else {
-            // --- SORUN 1 ÇÖZÜMÜ: UNPIN ---
-            // Pin kalktı: Pencereyi kapat, Float (Popover) aç
+            // UNPIN: Pinli moddan çık, Pencereyi kapat, Popover'ı aç
+            isPinned = false
             pinnedWindow?.close()
             pinnedWindow = nil
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.setupPopover()
-                // Hemen açılmasını istiyorsan:
                 self.togglePopover(nil)
+            }
+        } else {
+            // PIN: Pinli moda geç, Popover'ı kapat, Pencereyi aç
+            isPinned = true
+            popover?.close()
+            popover = nil
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.createPinnedWindow()
             }
         }
     }
@@ -157,11 +177,9 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
         window.level = isAlwaysOnTop ? .floating : .normal
     }
     
-    // Pencere kırmızı tuşla kapatılırsa
     func windowWillClose(_ notification: Notification) {
         if let window = notification.object as? NSWindow, window == pinnedWindow {
             DispatchQueue.main.async {
-                // Sadece durumu güncelle, popover'ı açma (Kullanıcı kapattı çünkü)
                 self.isPinned = false
                 self.pinnedWindow = nil
             }
@@ -174,7 +192,6 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
             window.makeKeyAndOrderFront(nil)
             return
         }
-        
         let window = NSPanel(
             contentRect: NSRect(x: 0, y: 0, width: 400, height: 600),
             styleMask: [.titled, .closable, .resizable, .fullSizeContentView, .nonactivatingPanel],
@@ -184,11 +201,9 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
         window.isFloatingPanel = true
         window.level = isAlwaysOnTop ? .floating : .normal
         window.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
-        
         window.titlebarAppearsTransparent = true
         window.titleVisibility = .hidden
-        window.delegate = self // Kapanmayı dinlemek için
-        
+        window.delegate = self
         window.backgroundColor = NSColor.windowBackgroundColor
         window.contentView = NSHostingView(rootView: CompactChatView(menuManager: self))
         window.center()
@@ -198,6 +213,7 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
     }
 }
 
+// ZOOM MENÜSÜ
 struct ZoomControlMenu: View {
     @ObservedObject var prefs = PreferencesManager.shared
     var body: some View {
