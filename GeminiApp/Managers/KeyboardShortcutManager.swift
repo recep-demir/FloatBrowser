@@ -1,46 +1,48 @@
-import Foundation
-import AppKit
-import SwiftUI
+import Cocoa
+import Carbon
 
-final class KeyboardShortcutManager {
+class KeyboardShortcutManager {
     static let shared = KeyboardShortcutManager()
     
-    private init() {}
+    private var globalMonitor: Any?
+    private var localMonitor: Any?
+    
+    // G tuşunun kodu 5'tir.
+    private let kKeyG: UInt16 = 5
     
     func setup() {
-        // 1. GLOBAL MONITOR (Uygulama arka plandayken çalışır)
-        NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { event in
-            self.handleEvent(event)
+        // Varsa eskileri temizle
+        if let gMonitor = globalMonitor { NSEvent.removeMonitor(gMonitor) }
+        if let lMonitor = localMonitor { NSEvent.removeMonitor(lMonitor) }
+        
+        // 1. GLOBAL MONİTÖR (Uygulama arka plandayken çalışır)
+        // macOS'te "Gizlilik ve Güvenlik > Erişilebilirlik" izni şarttır.
+        globalMonitor = NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { [weak self] event in
+            self?.handleEvent(event, isLocal: false)
         }
         
-        // 2. LOCAL MONITOR (Uygulama aktifken/seçiliyken çalışır)
-        NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
-            if self.handleEvent(event) {
-                return nil // Tuş olayını yakaladık, sistem başkasına iletmesin
+        // 2. LOCAL MONİTÖR (Uygulama aktifken çalışır)
+        localMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
+            if let self = self, self.handleEvent(event, isLocal: true) {
+                return nil // Tuşu sisteme iletme (G harfi yazmasın)
             }
             return event
         }
     }
     
-    @discardableResult
-    private func handleEvent(_ event: NSEvent) -> Bool {
-        // Hedef: Option (Alt) + Command + G
-        // KeyCode 5 = "G" harfi
-        // Modifiers = .command ve .option
+    // Tuş yakalama mantığı
+    @discardableResult private func handleEvent(_ event: NSEvent, isLocal: Bool) -> Bool {
+        // Sadece 'G' tuşuna basıldıysa ilgilen
+        guard event.keyCode == kKeyG else { return false }
         
-        if event.modifierFlags.contains(.command) &&
-           event.modifierFlags.contains(.option) &&
-           event.keyCode == 5 {
+        // Modifier tuşlarını kontrol et (Command + Option)
+        // .contains kullanarak CapsLock vs. açık olsa bile çalışmasını sağlıyoruz.
+        let flags = event.modifierFlags
+        if flags.contains(.command) && flags.contains(.option) {
             
+            // Ana thread'de işlemi yap
             DispatchQueue.main.async {
-                let manager = MenuBarManager.shared
-                if manager.isPinned {
-                    // Eğer pinli ise pencereyi öne getir
-                    manager.createPinnedWindow()
-                } else {
-                    // Değilse Popover'ı aç/kapat
-                    manager.togglePopover(nil)
-                }
+                MenuBarManager.shared.toggleAppFromShortcut()
             }
             return true
         }
