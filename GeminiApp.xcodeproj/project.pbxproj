@@ -23,7 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2660421A2F282AB8006FB55A /* FloatBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloatBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2660421A2F282AB8006FB55A /* GeminiApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeminiApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2660422C2F282C5A006FB55A /* KeyboardShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcutManager.swift; sourceTree = "<group>"; };
 		2660422D2F282C5A006FB55A /* MenuBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarManager.swift; sourceTree = "<group>"; };
 		2660422E2F282C5A006FB55A /* PreferencesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesManager.swift; sourceTree = "<group>"; };
@@ -54,7 +54,7 @@
 		266042112F282AB8006FB55A = {
 			isa = PBXGroup;
 			children = (
-				2660426B2F282C5A006FB55A /* AppleAI */,
+				2660426B2F282C5A006FB55A /* GeminiApp */,
 				2660426D2F282C5A006FB55A /* installation_guide.pdf */,
 				2660426E2F282C5A006FB55A /* README.md */,
 				2670162D2F2B897400AD381E /* requirements */,
@@ -65,7 +65,7 @@
 		2660421B2F282AB8006FB55A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2660421A2F282AB8006FB55A /* FloatBrowser.app */,
+				2660421A2F282AB8006FB55A /* GeminiApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,7 +89,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		2660426B2F282C5A006FB55A /* AppleAI */ = {
+		2660426B2F282C5A006FB55A /* GeminiApp */ = {
 			isa = PBXGroup;
 			children = (
 				266042332F282C5A006FB55A /* Managers */,
@@ -100,7 +100,7 @@
 				266042692F282C5A006FB55A /* Config.xcconfig */,
 				2660426A2F282C5A006FB55A /* Info.plist */,
 			);
-			path = AppleAI;
+			path = GeminiApp;
 			sourceTree = "<group>";
 		};
 		2670162D2F2B897400AD381E /* requirements */ = {
@@ -115,9 +115,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		266042192F282AB8006FB55A /* FloatBrowser */ = {
+		266042192F282AB8006FB55A /* GeminiApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 266042252F282AB9006FB55A /* Build configuration list for PBXNativeTarget "FloatBrowser" */;
+			buildConfigurationList = 266042252F282AB9006FB55A /* Build configuration list for PBXNativeTarget "GeminiApp" */;
 			buildPhases = (
 				266042162F282AB8006FB55A /* Sources */,
 				266042172F282AB8006FB55A /* Frameworks */,
@@ -127,11 +127,11 @@
 			);
 			dependencies = (
 			);
-			name = FloatBrowser;
+			name = GeminiApp;
 			packageProductDependencies = (
 			);
 			productName = FloatBrowser;
-			productReference = 2660421A2F282AB8006FB55A /* FloatBrowser.app */;
+			productReference = 2660421A2F282AB8006FB55A /* GeminiApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -149,7 +149,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 266042152F282AB8006FB55A /* Build configuration list for PBXProject "FloatBrowser" */;
+			buildConfigurationList = 266042152F282AB8006FB55A /* Build configuration list for PBXProject "GeminiApp" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -163,7 +163,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				266042192F282AB8006FB55A /* FloatBrowser */,
+				266042192F282AB8006FB55A /* GeminiApp */,
 			);
 		};
 /* End PBXProject section */
@@ -325,6 +325,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -350,8 +352,9 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.recep.FloatBrowser;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.recep.GeminiApp;
+				PRODUCT_NAME = GeminiApp;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -367,6 +370,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -392,8 +397,9 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.recep.FloatBrowser;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.recep.GeminiApp;
+				PRODUCT_NAME = GeminiApp;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -407,7 +413,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		266042152F282AB8006FB55A /* Build configuration list for PBXProject "FloatBrowser" */ = {
+		266042152F282AB8006FB55A /* Build configuration list for PBXProject "GeminiApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				266042232F282AB9006FB55A /* Debug */,
@@ -416,7 +422,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		266042252F282AB9006FB55A /* Build configuration list for PBXNativeTarget "FloatBrowser" */ = {
+		266042252F282AB9006FB55A /* Build configuration list for PBXNativeTarget "GeminiApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				266042262F282AB9006FB55A /* Debug */,
