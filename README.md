@@ -1,6 +1,6 @@
-# FloatBrowser
+# GeminiApp
 
-FloatBrowser is a minimalist, lightweight, and privacy-focused macOS menu bar client exclusively for **Google Gemini**.
+GeminiApp is a minimalist, lightweight, and privacy-focused macOS menu bar client exclusively for **Google Gemini**.
 
 Designed to be unobtrusive, it lives in your menu bar and can be detached into a floating window that stays on top of your work. No bloat, no subscriptions, just instant AI access.
 
@@ -28,8 +28,8 @@ Designed to be unobtrusive, it lives in your menu bar and can be detached into a
 
 ## Installation
 
-1. Download the latest `FloatBrowser.dmg` from the [Releases](https://github.com/recepdemir/FloatBrowser/releases) page.
-2. Open the DMG file and drag **FloatBrowser** to your **Applications** folder.
+1. Download the latest `GeminiApp.dmg` from the [Releases](https://github.com/recepdemir/FloatBrowser/releases) page.
+2. Open the DMG file and drag **GeminiApp** to your **Applications** folder.
 3. Launch the app. You will see the **Sparkles** (✨) icon in your menu bar.
 
 > **Note:** Since this is an open-source app not signed with a paid Apple ID, you might see a warning that the app is "damaged" or from an "unidentified developer".
@@ -37,7 +37,7 @@ Designed to be unobtrusive, it lives in your menu bar and can be detached into a
 > **To fix this:**
 > 1. Open **System Settings** -> **Privacy & Security**.
 > 2. Scroll down to the Security section and click **"Open Anyway"**.
-> 3. Or run this command in Terminal: `xattr -cr /Applications/FloatBrowser.app`
+> 3. Or run this command in Terminal: `xattr -cr /Applications/GeminiApp.app`
 
 ## Keyboard Shortcuts
 
