@@ -15,7 +15,6 @@
 		266042A62F282C5A006FB55A /* AIToolsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266042662F282C5A006FB55A /* AIToolsApp.swift */; };
 		266042BD2F282C5A006FB55A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2660426A2F282C5A006FB55A /* Info.plist */; };
 		266042BE2F282C5A006FB55A /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 266042692F282C5A006FB55A /* Config.xcconfig */; };
-		266042BF2F282C5A006FB55A /* installation_guide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2660426D2F282C5A006FB55A /* installation_guide.pdf */; };
 		266042C02F282C5A006FB55A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 266042682F282C5A006FB55A /* Assets.xcassets */; };
 		266042C82F282C5A006FB55A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2660426E2F282C5A006FB55A /* README.md */; };
 		26E538532F2D6CBF00360942 /* menu-mode.png in Resources */ = {isa = PBXBuildFile; fileRef = 26E538522F2D6CBF00360942 /* menu-mode.png */; };
@@ -34,7 +33,6 @@
 		266042682F282C5A006FB55A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		266042692F282C5A006FB55A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		2660426A2F282C5A006FB55A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2660426D2F282C5A006FB55A /* installation_guide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = installation_guide.pdf; sourceTree = "<group>"; };
 		2660426E2F282C5A006FB55A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		26E538522F2D6CBF00360942 /* menu-mode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-mode.png"; sourceTree = "<group>"; };
 		26E538542F2D6CEF00360942 /* float1-mode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "float1-mode.png"; sourceTree = "<group>"; };
@@ -55,7 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				2660426B2F282C5A006FB55A /* GeminiApp */,
-				2660426D2F282C5A006FB55A /* installation_guide.pdf */,
 				2660426E2F282C5A006FB55A /* README.md */,
 				2670162D2F2B897400AD381E /* requirements */,
 				2660421B2F282AB8006FB55A /* Products */,
@@ -175,7 +172,6 @@
 			files = (
 				266042BD2F282C5A006FB55A /* Info.plist in Resources */,
 				266042BE2F282C5A006FB55A /* Config.xcconfig in Resources */,
-				266042BF2F282C5A006FB55A /* installation_guide.pdf in Resources */,
 				26E538532F2D6CBF00360942 /* menu-mode.png in Resources */,
 				266042C02F282C5A006FB55A /* Assets.xcassets in Resources */,
 				26E538552F2D6CEF00360942 /* float1-mode.png in Resources */,
@@ -331,19 +327,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B4G29ZH5V7;
-				ENABLE_APP_SANDBOX = YES;
-				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
-				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_APP_SANDBOX = NO;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
-				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
-				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
-				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
-				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
-				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
-				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
-				ENABLE_RESOURCE_ACCESS_USB = NO;
-				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = FloatBrowser;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -377,19 +362,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B4G29ZH5V7;
-				ENABLE_APP_SANDBOX = YES;
-				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
-				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_APP_SANDBOX = NO;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
-				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
-				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
-				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
-				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
-				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
-				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
-				ENABLE_RESOURCE_ACCESS_USB = NO;
-				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = FloatBrowser;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";

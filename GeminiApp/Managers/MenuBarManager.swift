@@ -22,33 +22,46 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
     }
     
     // --- KISAYOL TETİKLEYİCİSİ ---
-    func toggleAppFromShortcut() {
-        // Her durumda uygulamayı "Zorla" öne getir
-        NSApp.activate(ignoringOtherApps: true)
-        
-        // 1. Pinli Pencere Açıksa -> Kapat
-        if let window = pinnedWindow, window.isVisible {
-            window.close() // Kapat (isPinned false olur, bir sonraki açılışta Float açılır)
-            return
-        }
-        
-        // 2. Popover (Float) Açıksa -> Kapat
-        if let popover = popover, popover.isShown {
-            popover.performClose(nil)
-            return
-        }
-        
-        // 3. Hiçbiri Açık Değilse -> Aç
-        // (En son pinli bıraktıysak pinli aç, yoksa popover aç)
-        if isPinned {
-            createPinnedWindow()
-        } else {
-            if let button = statusItem?.button {
-                togglePopover(button)
+    // --- KISAYOL TETİKLEYİCİSİ (GÜNCELLENDİ) ---
+        func toggleAppFromShortcut() {
+            // Uygulamanın şu anki aktiflik durumunu al
+            // Eğer başka bir uygulama kullanıyorsan (örn: Chrome), bu değer false olur.
+            let wasActive = NSApp.isActive
+            
+            // Uygulamayı her durumda öne çek (Focus alması için)
+            NSApp.activate(ignoringOtherApps: true)
+            
+            // 1. PINLI PENCERE KONTROLÜ
+            if let window = pinnedWindow, window.isVisible {
+                // Eğer uygulama ZATEN en öndeyse ve kullanıcı kısayola bastıysa -> GİZLE/KAPAT
+                // (Kullanıcı odaklıyken kısayola basarsa kapatmak istiyordur)
+                if wasActive && window.isKeyWindow {
+                    window.close()
+                } else {
+                    // Eğer uygulama ARKADAYSA (başka pencere aktifse) -> SADECE ÖNE GETİR
+                    // Kapatmadığımız için Pin modu bozulmaz, pencere en öne gelir.
+                    window.makeKeyAndOrderFront(nil)
+                }
+                return
+            }
+            
+            // 2. POPOVER (FLOAT) KONTROLÜ
+            if let popover = popover, popover.isShown {
+                // Float pencere zaten odak kaybında kapanır ama yine de manuel kapatma desteği
+                popover.performClose(nil)
+                return
+            }
+            
+            // 3. HİÇBİRİ AÇIK DEĞİLSE -> AÇ
+            // En son durumu hatırla (Pinli ise pinli aç)
+            if isPinned {
+                createPinnedWindow()
+            } else {
+                if let button = statusItem?.button {
+                    togglePopover(button)
+                }
             }
         }
-    }
-    
     private func setupMenuBar() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         if let button = statusItem?.button {

@@ -4,49 +4,64 @@ import Carbon
 class KeyboardShortcutManager {
     static let shared = KeyboardShortcutManager()
     
-    private var globalMonitor: Any?
-    private var localMonitor: Any?
+    private var hotKeyRef: EventHotKeyRef?
     
-    // G tuşunun kodu 5'tir.
-    private let kKeyG: UInt16 = 5
+    private init() {}
     
     func setup() {
-        // Varsa eskileri temizle
-        if let gMonitor = globalMonitor { NSEvent.removeMonitor(gMonitor) }
-        if let lMonitor = localMonitor { NSEvent.removeMonitor(lMonitor) }
+        // 1. HotKey Tanımları (Command + Option + G)
+        // 'GLBL' imzasının sayısal değeri: 1196131404
+        let hotKeyID = EventHotKeyID(signature: OSType(1196131404), id: 1)
         
-        // 1. GLOBAL MONİTÖR (Uygulama arka plandayken çalışır)
-        // macOS'te "Gizlilik ve Güvenlik > Erişilebilirlik" izni şarttır.
-        globalMonitor = NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { [weak self] event in
-            self?.handleEvent(event, isLocal: false)
+        // Modifiers: Command (cmdKey) + Option (optionKey)
+        // Carbon'da bu sabitler UInt32 bekler
+        let modifiers = UInt32(cmdKey | optionKey)
+        let keyCode = UInt32(5) // 'G' tuşu scancode
+        
+        // 2. Kısayolu Sisteme Kaydet
+        var status = RegisterEventHotKey(
+            keyCode,
+            modifiers,
+            hotKeyID,
+            GetEventDispatcherTarget(),
+            0,
+            &hotKeyRef
+        )
+        
+        if status != noErr {
+            print("❌ Carbon HotKey kaydı başarısız: \(status)")
+            return
         }
         
-        // 2. LOCAL MONİTÖR (Uygulama aktifken çalışır)
-        localMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
-            if let self = self, self.handleEvent(event, isLocal: true) {
-                return nil // Tuşu sisteme iletme (G harfi yazmasın)
-            }
-            return event
-        }
-    }
-    
-    // Tuş yakalama mantığı
-    @discardableResult private func handleEvent(_ event: NSEvent, isLocal: Bool) -> Bool {
-        // Sadece 'G' tuşuna basıldıysa ilgilen
-        guard event.keyCode == kKeyG else { return false }
+        // 3. Olay İşleyicisini (Event Handler) Kur
+        var eventType = EventTypeSpec(
+            eventClass: OSType(kEventClassKeyboard),
+            eventKind: UInt32(kEventHotKeyPressed)
+        )
         
-        // Modifier tuşlarını kontrol et (Command + Option)
-        // .contains kullanarak CapsLock vs. açık olsa bile çalışmasını sağlıyoruz.
-        let flags = event.modifierFlags
-        if flags.contains(.command) && flags.contains(.option) {
-            
-            // Ana thread'de işlemi yap
-            DispatchQueue.main.async {
-                MenuBarManager.shared.toggleAppFromShortcut()
-            }
-            return true
+        // InstallEventHandler çağrısı
+        status = InstallEventHandler(
+            GetEventDispatcherTarget(),
+            { (nextHandler, event, userData) -> OSStatus in
+                // Tuşa basıldığında çalışacak blok
+                DispatchQueue.main.async {
+                    print("🎹 Global Kısayol Tetiklendi (Opt+Cmd+G)")
+                    // HATA BURADAYDI: togglePopover() yerine parametresiz
+                    // olan toggleAppFromShortcut() kullanıyoruz.
+                    MenuBarManager.shared.toggleAppFromShortcut()
+                }
+                return noErr
+            },
+            1,
+            &eventType,
+            nil,
+            nil
+        )
+        
+        if status == noErr {
+            print("✅ Carbon Global Kısayol Aktif: Option+Command+G")
+        } else {
+            print("❌ Event Handler kurulum hatası: \(status)")
         }
-        return false
     }
 }
-
