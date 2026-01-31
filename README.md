@@ -22,7 +22,7 @@ Designed to be unobtrusive, it lives in your menu bar and can be detached into a
 ## Screenshots
 
 <div align="center">
-  <img src="requirements/float1-mode.png" alt="Float Mode" width="45%">
+  <img src="requirements/float1-mode.png" alt="Float Mode" width="75%">
   
 </div>
 
