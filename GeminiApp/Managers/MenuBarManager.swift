@@ -67,7 +67,7 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
         if let button = statusItem?.button {
             if let customIcon = NSImage(named: "MenuBarIcon") {
                 let resizedIcon = resizeImage(image: customIcon, w: 18, h: 18)
-                resizedIcon.isTemplate = false
+                resizedIcon.isTemplate = true
                 button.image = resizedIcon
             } else if let appIcon = NSImage(named: "AppIcon") {
                 let resizedIcon = resizeImage(image: appIcon, w: 18, h: 18)
