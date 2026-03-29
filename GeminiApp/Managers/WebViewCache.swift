@@ -2,12 +2,17 @@ import SwiftUI
 import WebKit
 import Combine
 
-class WebViewCache: NSObject, ObservableObject {
+// ENHANCEMENT: WKNavigationDelegate eklendi
+class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
     static let shared = WebViewCache()
     private var webView: WKWebView?
     
+    // ENHANCEMENT: App Nap'i engellemek için token
+    private var activityToken: NSObjectProtocol?
+    
     private override init() {
         super.init()
+        preventAppNap() // Uygulama başlarken App Nap'i devre dışı bırak
     }
     
     func getWebView() -> WKWebView {
@@ -20,15 +25,15 @@ class WebViewCache: NSObject, ObservableObject {
         
         let newWebView = WKWebView(frame: .zero, configuration: config)
         
-        // Gemini URL
+        // ENHANCEMENT: Delegate ataması yapıldı
+        newWebView.navigationDelegate = self
+        
         if let url = URL(string: "https://gemini.google.com") {
             newWebView.load(URLRequest(url: url))
         }
         
-        // Safari User Agent (En sorunsuz olanı)
         newWebView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15"
         
-        // İlk açılışta kayıtlı zoom seviyesini uygula
         let currentZoom = PreferencesManager.shared.zoomLevel
         newWebView.pageZoom = CGFloat(currentZoom)
         
@@ -36,8 +41,6 @@ class WebViewCache: NSObject, ObservableObject {
         return newWebView
     }
     
-    // YENİ: Zoom güncelleme komutu
-    // Bu fonksiyon PreferencesManager tarafından çağrılacak
     func updateZoom() {
         let level = PreferencesManager.shared.zoomLevel
         DispatchQueue.main.async {
@@ -47,5 +50,21 @@ class WebViewCache: NSObject, ObservableObject {
     
     func clearCache() {
         webView = nil
+    }
+    
+    // --- ENHANCEMENTS (GELİŞTİRMELER) ---
+    
+    // 1. WebContent Process ölürse/takılırsa otomatik yenile
+    func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+        print("⚠️ WebContent process terminated by macOS. Reloading...")
+        webView.reload()
+    }
+    
+    // 2. İşletim sisteminin uygulamayı derin uykuya almasını engelle
+    private func preventAppNap() {
+        activityToken = ProcessInfo.processInfo.beginActivity(
+            options: [.userInitiatedAllowingIdleSystemSleep],
+            reason: "Keep WebView network connections and WebSockets alive"
+        )
     }
 }
