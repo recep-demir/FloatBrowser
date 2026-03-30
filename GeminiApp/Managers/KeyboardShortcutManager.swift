@@ -3,22 +3,17 @@ import Carbon
 
 class KeyboardShortcutManager {
     static let shared = KeyboardShortcutManager()
-    
     private var hotKeyRef: EventHotKeyRef?
-    
     private init() {}
     
     func setup() {
-        // 1. HotKey Tanımları (Command + Option + G)
-        // 'GLBL' imzasının sayısal değeri: 1196131404
         let hotKeyID = EventHotKeyID(signature: OSType(1196131404), id: 1)
         
-        // Modifiers: Command (cmdKey) + Option (optionKey)
-        // Carbon'da bu sabitler UInt32 bekler
-        let modifiers = UInt32(cmdKey | optionKey)
-        let keyCode = UInt32(5) // 'G' tuşu scancode
+        // 1. DEĞİŞEN KISIM: Sadece Option tuşu (cmdKey kaldırıldı)
+        let modifiers = UInt32(optionKey)
+        // 2. DEĞİŞEN KISIM: Space (Boşluk) tuşunun scancode'u 49'dur
+        let keyCode = UInt32(49)
         
-        // 2. Kısayolu Sisteme Kaydet
         var status = RegisterEventHotKey(
             keyCode,
             modifiers,
@@ -33,21 +28,16 @@ class KeyboardShortcutManager {
             return
         }
         
-        // 3. Olay İşleyicisini (Event Handler) Kur
         var eventType = EventTypeSpec(
             eventClass: OSType(kEventClassKeyboard),
             eventKind: UInt32(kEventHotKeyPressed)
         )
         
-        // InstallEventHandler çağrısı
         status = InstallEventHandler(
             GetEventDispatcherTarget(),
             { (nextHandler, event, userData) -> OSStatus in
-                // Tuşa basıldığında çalışacak blok
                 DispatchQueue.main.async {
-                    print("🎹 Global Kısayol Tetiklendi (Opt+Cmd+G)")
-                    // HATA BURADAYDI: togglePopover() yerine parametresiz
-                    // olan toggleAppFromShortcut() kullanıyoruz.
+                    print("🎹 Global Kısayol Tetiklendi (Option + Space)")
                     MenuBarManager.shared.toggleAppFromShortcut()
                 }
                 return noErr
@@ -59,7 +49,7 @@ class KeyboardShortcutManager {
         )
         
         if status == noErr {
-            print("✅ Carbon Global Kısayol Aktif: Option+Command+G")
+            print("✅ Carbon Global Kısayol Aktif: Option + Space")
         } else {
             print("❌ Event Handler kurulum hatası: \(status)")
         }
