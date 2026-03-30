@@ -199,39 +199,40 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
     }
     
     func createPinnedWindow() {
-        if let window = pinnedWindow {
-            NSApp.activate(ignoringOtherApps: true)
-            window.makeKeyAndOrderFront(nil)
-            return
-        }
-        let window = NSPanel(
-            contentRect: NSRect(x: 0, y: 0, width: 400, height: 600),
-            styleMask: [.titled, .closable, .resizable, .fullSizeContentView, .nonactivatingPanel],
-            backing: .buffered,
-            defer: false
-        )
-        window.isFloatingPanel = true
-        window.level = isAlwaysOnTop ? .floating : .normal
-        window.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
-        window.titlebarAppearsTransparent = true
-        window.titleVisibility = .hidden
-        window.delegate = self
-        window.backgroundColor = NSColor.windowBackgroundColor
-        window.contentView = NSHostingView(rootView: CompactChatView(menuManager: self))
-        if let screenFrame = NSScreen.main?.visibleFrame {
+            if let window = pinnedWindow {
+                NSApp.activate(ignoringOtherApps: true)
+                window.makeKeyAndOrderFront(nil)
+                return
+            }
+            let window = NSPanel(
+                contentRect: NSRect(x: 0, y: 0, width: 400, height: 600),
+                styleMask: [.titled, .closable, .resizable, .fullSizeContentView, .nonactivatingPanel],
+                backing: .buffered,
+                defer: false
+            )
+            window.isFloatingPanel = true
+            window.level = isAlwaysOnTop ? .floating : .normal
+            window.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
+            window.titlebarAppearsTransparent = true
+            window.titleVisibility = .hidden
+            window.delegate = self
+            window.backgroundColor = NSColor.windowBackgroundColor
+            window.contentView = NSHostingView(rootView: CompactChatView(menuManager: self))
+            
+            // DEĞİŞEN KISIM: '- 20' kaldırıldı, tam sağa sıfırlanıyor
+            if let screenFrame = NSScreen.main?.visibleFrame {
                 let windowFrame = window.frame
-                // Ekranın sağından 20px içeride, dikeyde tam ortada açılır
-                let xPos = screenFrame.maxX - windowFrame.width - 20
+                let xPos = screenFrame.maxX - windowFrame.width // Sağ kenara sıfır
                 let yPos = screenFrame.midY - (windowFrame.height / 2)
                 window.setFrameOrigin(NSPoint(x: xPos, y: yPos))
             } else {
-                window.center() // Her ihtimale karşı fallback
+                window.center()
             }
             
-        self.pinnedWindow = window
-        NSApp.activate(ignoringOtherApps: true)
-        window.makeKeyAndOrderFront(nil)
-    }
+            self.pinnedWindow = window
+            NSApp.activate(ignoringOtherApps: true)
+            window.makeKeyAndOrderFront(nil)
+        }
 }
 
 // ZOOM MENÜSÜ
