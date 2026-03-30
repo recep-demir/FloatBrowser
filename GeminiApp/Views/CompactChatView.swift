@@ -55,7 +55,10 @@ struct CompactChatView: View {
                         VisualEffectBlur(material: .sidebar, blendingMode: .behindWindow)
                             .frame(height: 38) // Popover başlığı 38px (daha şık)
                         
+                        // DEĞİŞTİ: İğne işaretini sağa alan yeni HStack yapısı
                         HStack {
+                            Spacer() // DEĞİŞTİ: Spacer() başa geldi, iğneyi sağa iter.
+                            
                             Button(action: { menuManager.togglePin() }) {
                                 Image(systemName: "pin")
                                     .font(.system(size: 14))
@@ -64,9 +67,7 @@ struct CompactChatView: View {
                                     .contentShape(Rectangle())
                             }
                             .buttonStyle(PlainButtonStyle())
-                            .padding(.leading, 12)
-                            
-                            Spacer()
+                            .padding(.trailing, 12) // DEĞİŞTİ: .leading yerine .trailing yapıldı.
                         }
                     }
                     .frame(height: 38)
