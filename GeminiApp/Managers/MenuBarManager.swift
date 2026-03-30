@@ -22,7 +22,6 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
     }
     
     // --- KISAYOL TETİKLEYİCİSİ ---
-    // --- KISAYOL TETİKLEYİCİSİ (GÜNCELLENDİ) ---
         func toggleAppFromShortcut() {
             // Uygulamanın şu anki aktiflik durumunu al
             // Eğer başka bir uygulama kullanıyorsan (örn: Chrome), bu değer false olur.
@@ -122,7 +121,7 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
             menu.addItem(launchItem)
             
             menu.addItem(NSMenuItem.separator())
-            let infoItem = NSMenuItem(title: "Global Shortcut: ⌥⌘G", action: nil, keyEquivalent: "")
+            let infoItem = NSMenuItem(title: "Global Shortcut: ⌥Space", action: nil, keyEquivalent: "")
             infoItem.isEnabled = false
             menu.addItem(infoItem)
             
