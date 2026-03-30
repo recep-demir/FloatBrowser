@@ -10,7 +10,7 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
     var pinnedWindow: NSPanel?
     
     @Published var isPinned: Bool = false
-    @Published var isAlwaysOnTop: Bool = true
+    @Published var isAlwaysOnTop: Bool = false
     
     override private init() {
         super.init()
@@ -218,7 +218,16 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
         window.delegate = self
         window.backgroundColor = NSColor.windowBackgroundColor
         window.contentView = NSHostingView(rootView: CompactChatView(menuManager: self))
-        window.center()
+        if let screenFrame = NSScreen.main?.visibleFrame {
+                let windowFrame = window.frame
+                // Ekranın sağından 20px içeride, dikeyde tam ortada açılır
+                let xPos = screenFrame.maxX - windowFrame.width - 20
+                let yPos = screenFrame.midY - (windowFrame.height / 2)
+                window.setFrameOrigin(NSPoint(x: xPos, y: yPos))
+            } else {
+                window.center() // Her ihtimale karşı fallback
+            }
+            
         self.pinnedWindow = window
         NSApp.activate(ignoringOtherApps: true)
         window.makeKeyAndOrderFront(nil)
