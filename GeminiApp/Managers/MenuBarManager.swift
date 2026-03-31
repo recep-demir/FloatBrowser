@@ -184,13 +184,13 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
     }
     
     func windowWillClose(_ notification: Notification) {
-        if let window = notification.object as? NSWindow, window == pinnedWindow {
-            DispatchQueue.main.async {
-                self.isPinned = false
-                self.pinnedWindow = nil
+            if let window = notification.object as? NSWindow, window == pinnedWindow {
+                DispatchQueue.main.async {
+                    // self.isPinned = false // -> BU SATIRI KALDIRDIK (Modu unutmaması için)
+                    self.pinnedWindow = nil
+                }
             }
         }
-    }
     
     func createPinnedWindow() {
             if let window = pinnedWindow {
