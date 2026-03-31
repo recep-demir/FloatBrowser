@@ -43,7 +43,7 @@ Designed to be unobtrusive, it lives in your menu bar and can be detached into a
 
 | Shortcut | Action |
 | :--- | :--- |
-| **⌥ + ⌘ + G** | Toggle Window (Global) |
+| **⌥ + Space ** | Toggle Window (Global) |
 | **⌘ + Q** | Quit App |
 | **Right Click (Icon)** | Open Settings Menu |
 
