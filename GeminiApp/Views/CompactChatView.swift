@@ -99,7 +99,7 @@ struct CompactChatView: View {
                 }
             }
         }
-        .frame(minWidth: 350, minHeight: 500)
+        .frame(minWidth: 335, minHeight: 400)
     }
 }
 
