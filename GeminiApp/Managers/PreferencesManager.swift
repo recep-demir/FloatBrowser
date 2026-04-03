@@ -27,19 +27,18 @@ class PreferencesManager: ObservableObject {
     
     // Zoom Artır
     func increaseZoom() {
-        if zoomLevel < 3.0 {
-            zoomLevel += 0.1
-            // WebView'i anında güncelle
-            WebViewCache.shared.updateZoom()
+            if zoomLevel < 3.0 {
+                // Hassas hesaplama için yuvarlama ekledik
+                zoomLevel = (zoomLevel + 0.05)
+                WebViewCache.shared.updateZoom()
+            }
         }
-    }
-    
-    // Zoom Azalt
-    func decreaseZoom() {
-        if zoomLevel > 0.5 {
-            zoomLevel -= 0.1
-            // WebView'i anında güncelle
-            WebViewCache.shared.updateZoom()
+        
+        // Zoom Azalt
+        func decreaseZoom() {
+            if zoomLevel > 0.5 {
+                zoomLevel = (zoomLevel - 0.05)
+                WebViewCache.shared.updateZoom()
+            }
         }
-    }
 }
