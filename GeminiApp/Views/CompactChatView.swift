@@ -11,6 +11,17 @@ struct CompactChatView: View {
                 // --- PINLI HAL (PENCERE MODU) ---
                 // YENİ YÖNTEM: OVERLAY
                 GeminiWebView()
+                    // GÖRÜNMEZ YENİLEME KISAYOLU (Cmd + R)
+                    .background(
+                        Button(action: {
+                            print("🔄 Kullanıcı sayfayı yeniledi (Cmd+R)")
+                            WebViewCache.shared.getWebView().reload()
+                        }) {
+                            EmptyView()
+                        }
+                        .keyboardShortcut("r", modifiers: .command)
+                        .opacity(0)
+                    )
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     // Web içeriğini tam 28px aşağı itiyoruz
                     .padding(.top, headerHeight)
@@ -74,6 +85,17 @@ struct CompactChatView: View {
                     .overlay(Rectangle().frame(height: 0.5).foregroundColor(Color.gray.opacity(0.1)), alignment: .bottom)
                     
                     GeminiWebView()
+                        // GÖRÜNMEZ YENİLEME KISAYOLU (Cmd + R)
+                        .background(
+                            Button(action: {
+                                print("🔄 Kullanıcı sayfayı yeniledi (Cmd+R)")
+                                WebViewCache.shared.getWebView().reload()
+                            }) {
+                                EmptyView()
+                            }
+                            .keyboardShortcut("r", modifiers: .command)
+                            .opacity(0)
+                        )
                 }
             }
         }

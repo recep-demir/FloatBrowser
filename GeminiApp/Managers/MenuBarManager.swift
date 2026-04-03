@@ -19,6 +19,13 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
         
         // Kısayol yöneticisini başlat
         KeyboardShortcutManager.shared.setup()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidResignActive), name: NSApplication.didResignActiveNotification, object: nil)
+        
+        
+        
+        
+        	
     }
     
     // --- KISAYOL TETİKLEYİCİSİ ---
@@ -226,6 +233,13 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
             self.pinnedWindow = window
             NSApp.activate(ignoringOtherApps: true)
             window.makeKeyAndOrderFront(nil)
+        }
+    // Başka bir uygulamaya tıklandığında çalışır
+        @objc func appDidResignActive() {
+            // Eğer iğneli değilse (float modundaysa) zorla kapat
+            if !isPinned {
+                popover?.performClose(nil)
+            }
         }
 }
 

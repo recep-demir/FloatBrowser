@@ -1,6 +1,7 @@
 import SwiftUI
 import WebKit
 import Combine
+import Cocoa // NSWorkspace için gerekli
 
 // ENHANCEMENT: WKNavigationDelegate eklendi
 class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
@@ -13,6 +14,7 @@ class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
     private override init() {
         super.init()
         preventAppNap() // Uygulama başlarken App Nap'i devre dışı bırak
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(macDidWake), name: NSWorkspace.didWakeNotification, object: nil)
     }
     
     func getWebView() -> WKWebView {
@@ -67,4 +69,12 @@ class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
             reason: "Keep WebView network connections and WebSockets alive"
         )
     }
+    
+    // Mac uykudan uyandığında otomatik çalışır
+        @objc func macDidWake() {
+            print("🔄 Mac uyandı, ölü bağlantıları temizlemek için WebView yenileniyor...")
+            DispatchQueue.main.async {
+                self.webView?.reload()
+            }
+        }
 }
