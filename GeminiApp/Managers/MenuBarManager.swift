@@ -10,7 +10,7 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
     var pinnedWindow: NSPanel?
     
     @Published var isPinned: Bool = false
-    @Published var isAlwaysOnTop: Bool = false
+    @Published var isAlwaysOnTop: Bool = true
     
     override private init() {
         super.init()
@@ -98,7 +98,7 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
     
     private func setupPopover() {
         let popover = NSPopover()
-        popover.contentSize = NSSize(width: 400, height: 600)
+        popover.contentSize = NSSize(width: 375, height: 600)
         popover.behavior = .transient
         popover.contentViewController = NSHostingController(rootView: CompactChatView(menuManager: self))
         self.popover = popover
@@ -193,7 +193,8 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
             if let window = notification.object as? NSWindow, window == pinnedWindow {
                 DispatchQueue.main.async {
-                    // self.isPinned = false // -> BU SATIRI KALDIRDIK (Modu unutmaması için)
+                    // Kapatma tuşuna basıldığında pin modunu kapatıyoruz
+                    self.isPinned = false
                     self.pinnedWindow = nil
                 }
             }
@@ -206,7 +207,7 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
                 return
             }
             let window = NSPanel(
-                contentRect: NSRect(x: 0, y: 0, width: 400, height: 600),
+                contentRect: NSRect(x: 0, y: 0, width: 375, height: 600),
                 styleMask: [.titled, .closable, .resizable, .fullSizeContentView, .nonactivatingPanel],
                 backing: .buffered,
                 defer: false
@@ -221,14 +222,14 @@ class MenuBarManager: NSObject, ObservableObject, NSWindowDelegate {
             window.contentView = NSHostingView(rootView: CompactChatView(menuManager: self))
             
             // DEĞİŞEN KISIM: '- 20' kaldırıldı, tam sağa sıfırlanıyor
-            if let screenFrame = NSScreen.main?.visibleFrame {
-                let windowFrame = window.frame
-                let xPos = screenFrame.maxX - windowFrame.width // Sağ kenara sıfır
-                let yPos = screenFrame.midY - (windowFrame.height / 2)
-                window.setFrameOrigin(NSPoint(x: xPos, y: yPos))
-            } else {
-                window.center()
-            }
+        if let screenFrame = NSScreen.main?.visibleFrame {
+                    let windowFrame = window.frame
+                    let xPos = screenFrame.maxX - windowFrame.width // Sağ kenara sıfır
+                    let yPos = screenFrame.maxY - windowFrame.height // Üst kenara (Menubar altına) sıfır
+                    window.setFrameOrigin(NSPoint(x: xPos, y: yPos))
+                } else {
+                    window.center()
+                }
             
             self.pinnedWindow = window
             NSApp.activate(ignoringOtherApps: true)
