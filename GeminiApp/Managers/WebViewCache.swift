@@ -9,11 +9,41 @@ class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
     
     private var activityToken: NSObjectProtocol?
     
+    // YENİ: Bekleme süresi takibi için değişkenler
+    private var lastActiveTime: Date = Date()
+    private let idleThreshold: TimeInterval = 15 * 60 // 15 Dakika (Saniye cinsinden)
+    
     private override init() {
         super.init()
         preventAppNap()
-        // macDidWake observer'ı Error 13'e sebep olduğu için kaldırıldı.
+        
+        // YENİ: Uygulamanın açılıp kapanmasını (odak değişimini) dinleyen observer'lar
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidResignActive), name: NSApplication.didResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: NSApplication.didBecomeActiveNotification, object: nil)
     }
+    
+    // --- YENİ EKLENEN YÖNETİM FONKSİYONLARI ---
+    
+    @objc private func appDidResignActive() {
+        // Popover kapandığında veya başka uygulamaya geçildiğinde saati kaydet
+        lastActiveTime = Date()
+    }
+    
+    @objc private func appDidBecomeActive() {
+        // Popover açıldığında ne kadar süre geçtiğini hesapla
+        let idleTime = Date().timeIntervalSince(lastActiveTime)
+        
+        // Eğer 15 dakikadan fazla uyumuşsa, zombi bağlantıyı temizlemek için sayfayı yenile
+        if idleTime > idleThreshold {
+            print("⏳ Uzun süre bekleme tespit edildi (\(Int(idleTime / 60)) dk). Zombi session yenileniyor...")
+            webView?.reload()
+        }
+        
+        // Saati sıfırla
+        lastActiveTime = Date()
+    }
+    
+    // ------------------------------------------
     
     func getWebView() -> WKWebView {
         if let existing = webView {
@@ -21,7 +51,7 @@ class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
         }
         
         let config = WKWebViewConfiguration()
-        config.websiteDataStore = .default() // Kalıcı hafıza
+        config.websiteDataStore = .default()
         
         config.allowsAirPlayForMediaPlayback = true
         config.mediaTypesRequiringUserActionForPlayback = []
@@ -37,12 +67,10 @@ class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
             newWebView.load(URLRequest(url: url))
         }
         
-        // HIZ VE STABİLİTE: Orijinal Safari User-Agent'ına dönüldü. (Error 13'ü çözer)
         newWebView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15"
         
         let currentZoom = PreferencesManager.shared.zoomLevel
         newWebView.pageZoom = CGFloat(currentZoom)
-        
         newWebView.configuration.suppressesIncrementalRendering = false
         
         self.webView = newWebView
