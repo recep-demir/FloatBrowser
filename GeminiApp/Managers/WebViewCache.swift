@@ -8,10 +8,8 @@ class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
     private var webView: WKWebView?
     
     private var activityToken: NSObjectProtocol?
-    
     private var lastActiveTime: Date = Date()
-    // Sohbetin çok sık yenilenmemesi için süreyi istersen buradan artırabilirsin (örneğin 10 dakika)
-    private let idleThreshold: TimeInterval = 10 * 60
+    private let idleThreshold: TimeInterval = 10 * 60 // 10 Dakika sınırı
     
     private override init() {
         super.init()
@@ -22,39 +20,20 @@ class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
     }
     
     @objc private func appDidResignActive() {
+        // Arkaya atıldığında saati kaydet
         lastActiveTime = Date()
     }
     
     @objc private func appDidBecomeActive() {
         let idleTime = Date().timeIntervalSince(lastActiveTime)
         
+        // SADECE 10 dakikadan fazla beklediyse SESSİZCE VE YUMUŞAKÇA yenile
         if idleTime > idleThreshold {
-            print("⏳ Uzun bekleme sonrası sohbet korunarak yenileniyor...")
-            forceReload()
-        } else {
-            // Sağlık kontrolü (Ping)
-            webView?.evaluateJavaScript("document.readyState") { [weak self] (result, error) in
-                if error != nil {
-                    print("💀 Motor donmuş! Mevcut sayfa yeniden yükleniyor...")
-                    self?.forceReload()
-                }
-            }
+            print("⏳ 10 dakikadan fazla beklendi. Mevcut sohbet yenileniyor...")
+            webView?.reload() // Hard reload ve JS Ping kaldırıldı!
         }
+        
         lastActiveTime = Date()
-    }
-    
-    // --- SOHBETİ KORUYAN HARD RELOAD ---
-    private func forceReload() {
-        // Uygulamanın şu an bulunduğu tam adresi (sohbet ID'si dahil) alıyoruz
-        if let currentURL = webView?.url {
-            let request = URLRequest(url: currentURL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 10.0)
-            DispatchQueue.main.async {
-                self.webView?.load(request)
-            }
-        } else if let baseURL = URL(string: "https://gemini.google.com") {
-            // Eğer URL alınamazsa varsayılan adrese dön
-            webView?.load(URLRequest(url: baseURL))
-        }
     }
     
     func getWebView() -> WKWebView {
@@ -79,6 +58,7 @@ class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
             newWebView.load(URLRequest(url: url))
         }
         
+        // Stabil orijinal kimlik
         newWebView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15"
         
         let currentZoom = PreferencesManager.shared.zoomLevel
@@ -101,7 +81,8 @@ class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
     }
     
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
-        forceReload()
+        print("⚠️ WebContent process öldü. Yenileniyor...")
+        webView.reload()
     }
     
     private func preventAppNap() {
