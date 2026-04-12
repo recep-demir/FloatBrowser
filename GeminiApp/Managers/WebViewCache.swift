@@ -10,8 +10,8 @@ class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
     private var activityToken: NSObjectProtocol?
     
     private var lastActiveTime: Date = Date()
-    // BEKLEME SÜRESİ 3 DAKİKAYA DÜŞÜRÜLDÜ
-    private let idleThreshold: TimeInterval = 3 * 60
+    // Sohbetin çok sık yenilenmemesi için süreyi istersen buradan artırabilirsin (örneğin 10 dakika)
+    private let idleThreshold: TimeInterval = 10 * 60
     
     private override init() {
         super.init()
@@ -29,14 +29,13 @@ class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
         let idleTime = Date().timeIntervalSince(lastActiveTime)
         
         if idleTime > idleThreshold {
-            print("⏳ 3 dakikadan fazla beklendi. Hard Reload yapılıyor...")
+            print("⏳ Uzun bekleme sonrası sohbet korunarak yenileniyor...")
             forceReload()
         } else {
-            // YENİ: KISA SÜRELİ BEKLEMELERDE "PING" (SAĞLIK KONTROLÜ)
-            // Eğer sayfa donmuşsa JavaScript cevap veremez. Cevap gelmezse anında zorla yenile.
+            // Sağlık kontrolü (Ping)
             webView?.evaluateJavaScript("document.readyState") { [weak self] (result, error) in
                 if error != nil {
-                    print("💀 WebKit JavaScript motoru donmuş! Hard Reload yapılıyor...")
+                    print("💀 Motor donmuş! Mevcut sayfa yeniden yükleniyor...")
                     self?.forceReload()
                 }
             }
@@ -44,15 +43,17 @@ class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
         lastActiveTime = Date()
     }
     
-    // YENİ: SOFT RELOAD YERİNE HARD RESET FONKSİYONU
+    // --- SOHBETİ KORUYAN HARD RELOAD ---
     private func forceReload() {
-        // Normal .reload() işlemi donmuş bir WKWebView'da sıraya girer ama çalışmaz.
-        // Bunun yerine, URL'i Cache'i (Önbelleği) hiçe sayarak en baştan yükletiyoruz.
-        if let url = URL(string: "https://gemini.google.com") {
-            let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 10.0)
+        // Uygulamanın şu an bulunduğu tam adresi (sohbet ID'si dahil) alıyoruz
+        if let currentURL = webView?.url {
+            let request = URLRequest(url: currentURL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 10.0)
             DispatchQueue.main.async {
                 self.webView?.load(request)
             }
+        } else if let baseURL = URL(string: "https://gemini.google.com") {
+            // Eğer URL alınamazsa varsayılan adrese dön
+            webView?.load(URLRequest(url: baseURL))
         }
     }
     
@@ -100,8 +101,7 @@ class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
     }
     
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
-        print("⚠️ WebContent process terminated by macOS. Reloading...")
-        forceReload() // Zorla kapatılmalarda da Hard Reset at
+        forceReload()
     }
     
     private func preventAppNap() {
