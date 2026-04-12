@@ -15,24 +15,37 @@ class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
         super.init()
         preventAppNap()
         
+        // YENİ: SADECE BİR KEREYE MAHSUS BOZUK ÖNBELLEĞİ SİLER
+        clearCorruptedDataOnce()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(appDidResignActive), name: NSApplication.didResignActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: NSApplication.didBecomeActiveNotification, object: nil)
     }
     
+    // --- YENİ: OTOMATİK ÖNBELLEK TEMİZLEYİCİ ---
+    private func clearCorruptedDataOnce() {
+        let hasCleared = UserDefaults.standard.bool(forKey: "hasClearedZombieCache_v2")
+        if !hasCleared {
+            let dataTypes = WKWebsiteDataStore.allWebsiteDataTypes()
+            WKWebsiteDataStore.default().removeData(ofTypes: dataTypes, modifiedSince: Date(timeIntervalSince1970: 0)) {
+                print("🧹 Önceki denemelerden kalan bozuk Google önbelleği tamamen temizlendi.")
+                // Temizlendiğini kaydet, bir daha asla silme
+                UserDefaults.standard.set(true, forKey: "hasClearedZombieCache_v2")
+            }
+        }
+    }
+    
     @objc private func appDidResignActive() {
-        // Arkaya atıldığında saati kaydet
         lastActiveTime = Date()
     }
     
     @objc private func appDidBecomeActive() {
         let idleTime = Date().timeIntervalSince(lastActiveTime)
         
-        // SADECE 10 dakikadan fazla beklediyse SESSİZCE VE YUMUŞAKÇA yenile
         if idleTime > idleThreshold {
             print("⏳ 10 dakikadan fazla beklendi. Mevcut sohbet yenileniyor...")
-            webView?.reload() // Hard reload ve JS Ping kaldırıldı!
+            webView?.reload()
         }
-        
         lastActiveTime = Date()
     }
     
@@ -58,8 +71,8 @@ class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
             newWebView.load(URLRequest(url: url))
         }
         
-        // Stabil orijinal kimlik
-        newWebView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15"
+        // DİKKAT: customUserAgent TAMAMEN KALDIRILDI!
+        // macOS'in kendi yerel Safari motoruyla bağlanmasını sağlıyoruz, bu Error 13'ü engeller.
         
         let currentZoom = PreferencesManager.shared.zoomLevel
         newWebView.pageZoom = CGFloat(currentZoom)
