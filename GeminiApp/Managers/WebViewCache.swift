@@ -9,41 +9,52 @@ class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
     
     private var activityToken: NSObjectProtocol?
     
-    // YENİ: Bekleme süresi takibi için değişkenler
     private var lastActiveTime: Date = Date()
-    private let idleThreshold: TimeInterval = 15 * 60 // 15 Dakika (Saniye cinsinden)
+    // BEKLEME SÜRESİ 3 DAKİKAYA DÜŞÜRÜLDÜ
+    private let idleThreshold: TimeInterval = 3 * 60
     
     private override init() {
         super.init()
         preventAppNap()
         
-        // YENİ: Uygulamanın açılıp kapanmasını (odak değişimini) dinleyen observer'lar
         NotificationCenter.default.addObserver(self, selector: #selector(appDidResignActive), name: NSApplication.didResignActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: NSApplication.didBecomeActiveNotification, object: nil)
     }
     
-    // --- YENİ EKLENEN YÖNETİM FONKSİYONLARI ---
-    
     @objc private func appDidResignActive() {
-        // Popover kapandığında veya başka uygulamaya geçildiğinde saati kaydet
         lastActiveTime = Date()
     }
     
     @objc private func appDidBecomeActive() {
-        // Popover açıldığında ne kadar süre geçtiğini hesapla
         let idleTime = Date().timeIntervalSince(lastActiveTime)
         
-        // Eğer 15 dakikadan fazla uyumuşsa, zombi bağlantıyı temizlemek için sayfayı yenile
         if idleTime > idleThreshold {
-            print("⏳ Uzun süre bekleme tespit edildi (\(Int(idleTime / 60)) dk). Zombi session yenileniyor...")
-            webView?.reload()
+            print("⏳ 3 dakikadan fazla beklendi. Hard Reload yapılıyor...")
+            forceReload()
+        } else {
+            // YENİ: KISA SÜRELİ BEKLEMELERDE "PING" (SAĞLIK KONTROLÜ)
+            // Eğer sayfa donmuşsa JavaScript cevap veremez. Cevap gelmezse anında zorla yenile.
+            webView?.evaluateJavaScript("document.readyState") { [weak self] (result, error) in
+                if error != nil {
+                    print("💀 WebKit JavaScript motoru donmuş! Hard Reload yapılıyor...")
+                    self?.forceReload()
+                }
+            }
         }
-        
-        // Saati sıfırla
         lastActiveTime = Date()
     }
     
-    // ------------------------------------------
+    // YENİ: SOFT RELOAD YERİNE HARD RESET FONKSİYONU
+    private func forceReload() {
+        // Normal .reload() işlemi donmuş bir WKWebView'da sıraya girer ama çalışmaz.
+        // Bunun yerine, URL'i Cache'i (Önbelleği) hiçe sayarak en baştan yükletiyoruz.
+        if let url = URL(string: "https://gemini.google.com") {
+            let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 10.0)
+            DispatchQueue.main.async {
+                self.webView?.load(request)
+            }
+        }
+    }
     
     func getWebView() -> WKWebView {
         if let existing = webView {
@@ -90,7 +101,7 @@ class WebViewCache: NSObject, ObservableObject, WKNavigationDelegate {
     
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
         print("⚠️ WebContent process terminated by macOS. Reloading...")
-        webView.reload()
+        forceReload() // Zorla kapatılmalarda da Hard Reset at
     }
     
     private func preventAppNap() {
